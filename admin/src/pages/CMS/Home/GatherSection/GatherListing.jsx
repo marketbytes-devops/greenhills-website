@@ -1,0 +1,46 @@
+import ContentManager from "../../../../components/ContentManager";
+import ContentSection from "./ContentSection";
+
+const GatherListing = () => {
+    const contentFields = [
+        {
+            name: 'image',
+            label: 'Image',
+            type: 'file',
+            accept: 'image/png,image/jpeg,image/webp,image/gif',
+            required: true,
+        },
+        {
+            name: 'title',
+            label: 'Title',
+            type: 'textEditor',
+            placeholder: 'Enter the title',
+            required: true,
+        },
+        {
+            name: 'description',
+            label: 'Description',
+            type: 'textEditor',
+            placeholder: 'Enter the description',
+        },
+        {
+            name: 'link',
+            label: 'Link',
+            type: 'text',
+            placeholder: 'Enter the link',
+        }
+    ];
+
+    return (
+        <div className="space-y-6">
+            <ContentManager
+                apiBaseUrl="/home/home-gather-section-listing/"
+                fields={contentFields}
+                title="Home Gather Section Management"
+            />
+            <ContentSection />
+        </div>
+    );
+};
+
+export default GatherListing;
