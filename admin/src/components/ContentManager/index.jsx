@@ -348,6 +348,7 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
                     modules={quillModules}
                     placeholder={field.placeholder || ""}
                     className="bg-white"
+                    style={field.name === 'content' ? { height: '400px', padding: '0px 0px 42px 0px' } : {}}
                     aria-required={field.required}
                   />
                 ) : field.type === "select" ? (
