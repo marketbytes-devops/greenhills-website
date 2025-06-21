@@ -16,10 +16,16 @@ const TitleSection = () => {
       type: "textEditor",
       placeholder: "Enter about section description",
     },
+    {
+      name: "link",
+      label: "More Info Link",
+      type: "text",
+      placeholder: "Enter about section link",
+    },
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <ContentManager
         apiBaseUrl="/home/home-about-section-title/"
         fields={contentFields}

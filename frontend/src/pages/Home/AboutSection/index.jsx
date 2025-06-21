@@ -5,8 +5,10 @@ import {
   fetchAboutSectionTitle,
   fetchAboutSectionImages,
 } from "../../../helpers/apiService";
+import { useNavigate } from "react-router-dom";
 
 const AboutSection = ({ className = "" }) => {
+  const navigate = useNavigate();
   const [sectionData, setSectionData] = useState({
     title: "",
     description: "",
@@ -86,7 +88,9 @@ const AboutSection = ({ className = "" }) => {
   }, []);
 
   const handleButtonClick = () => {
-    console.log("More Info button clicked!");
+    if (link) {
+      navigate(link);
+    }
   };
 
   const { title, description, image } = sectionData;
@@ -188,7 +192,7 @@ const AboutSection = ({ className = "" }) => {
       </div>
 
       <div className="pt-10 flex items-center justify-center">
-        <button className="flex group items-center justify-center space-x-2 bg-black text-md text-white font-medium w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+        <button className="flex group items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-normal w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
           View More
         </button>
       </div>
@@ -198,6 +202,7 @@ const AboutSection = ({ className = "" }) => {
 
 AboutSection.propTypes = {
   className: PropTypes.string,
+  link: PropTypes.string,
 };
 
 export default memo(AboutSection);

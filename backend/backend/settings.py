@@ -33,6 +33,16 @@ INSTALLED_APPS = [
     'authapp',
     'home',
     'about',
+    'blog',
+    'explore',
+    'gallery',
+    'stay',
+    'eat',
+    'gather',
+    'social_media',
+    'additional_settings',
+    'enquiry',
+    'terms_and_privacy'
 ]
 
 MIDDLEWARE = [
@@ -133,12 +143,19 @@ SIMPLE_JWT = {
 CORS_ALLOW_ALL_ORIGINS = DEBUG  
 CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:5178,http://localhost:5176').split(',')
 
+# Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
-EMAIL_PORT = os.getenv('EMAIL_PORT', 587)
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'your-email@gmail.com')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'your-email-password')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_DEFAULT_FROM = os.getenv('EMAIL_DEFAULT_FROM')
+EMAIL_CC = os.getenv('EMAIL_CC').split(',') if os.getenv('EMAIL_CC') else []
+EMAIL_BCC = os.getenv('EMAIL_BCC').split(',') if os.getenv('EMAIL_BCC') else []
+
+# reCAPTCHA secret key
+EMAIL_RECAPTCHA_SECRET = os.getenv('EMAIL_RECAPTCHA_SECRET')
 
 AUTH_USER_MODEL = 'authapp.CustomUser'
 

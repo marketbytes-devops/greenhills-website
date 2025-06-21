@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import apiClient from '../../helpers/apiClient';
 
@@ -8,8 +7,6 @@ const Profile = () => {
     email: '',
     name: '',
     username: '',
-    address: '',
-    phone_number: '',
     image: null,
   });
   const [imagePreview, setImagePreview] = useState(null);
@@ -17,7 +14,6 @@ const Profile = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     apiClient
@@ -49,8 +45,6 @@ const Profile = () => {
     formData.append('email', profile.email);
     formData.append('name', profile.name || '');
     formData.append('username', profile.username || '');
-    formData.append('address', profile.address || '');
-    formData.append('phone_number', profile.phone_number || '');
     if (profile.image instanceof File) {
       formData.append('image', profile.image);
     } else if (!profile.image) {
@@ -144,24 +138,6 @@ const Profile = () => {
                 type="text"
                 value={profile.username || ''}
                 onChange={(e) => setProfile({ ...profile, username: e.target.value })}
-                className="w-full p-2 border focus:border-none rounded focus:outline-none focus:ring focus:ring-gray-600 opacity-75"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Address</label>
-              <textarea
-                value={profile.address || ''}
-                onChange={(e) => setProfile({ ...profile, address: e.target.value })}
-                className="w-full p-2 border focus:border-none rounded focus:outline-none focus:ring focus:ring-gray-600 opacity-75"
-                rows="4"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Phone Number</label>
-              <input
-                type="tel"
-                value={profile.phone_number || ''}
-                onChange={(e) => setProfile({ ...profile, phone_number: e.target.value })}
                 className="w-full p-2 border focus:border-none rounded focus:outline-none focus:ring focus:ring-gray-600 opacity-75"
               />
             </div>

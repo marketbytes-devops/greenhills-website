@@ -70,7 +70,7 @@ const Services = () => {
         <Slider {...settings} className="w-full">
           {services.map((service) => (
             <div key={service.id} className="p-2 group">
-              <div className="bg-white group-hover:bg-black shadow-lg hover:shadow-xl rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-1 w-full mx-auto flex flex-col justify-center items-center min-h-[200px]">
+              <div className="bg-white group-hover:bg-secondaryBlack shadow-lg hover:shadow-xl rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-1 w-full mx-auto flex flex-col justify-center items-center min-h-[200px]">
                 <div className="relative flex justify-center items-center h-20">
                   <img
                     src={service.image || '/placeholder-image.jpg'}
@@ -95,7 +95,7 @@ const Services = () => {
           <div
             key={index}
             className={`rounded-full transition-all duration-300 ${
-              index === currentSlide ? 'w-10 h-2 bg-black' : 'w-2 h-2 bg-gray-200'
+              index === currentSlide ? 'w-10 h-2 bg-secondaryBlack' : 'w-2 h-2 bg-gray-200'
             }`}
           />
         ))}

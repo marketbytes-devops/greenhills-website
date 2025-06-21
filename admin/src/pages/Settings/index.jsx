@@ -1,9 +1,46 @@
-import React from 'react'
+import ContentManager from "../../components/ContentManager";
 
 const Settings = () => {
-  return (
-    <div>Settings</div>
-  )
-}
+  const contentFields = [
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'text',
+      placeholder: 'Enter the description',
+    },
+    {
+      name: 'location',
+      label: 'Location',
+      type: 'text',
+      placeholder: 'Enter the location',
+    },
+    {
+      name: 'phone_one',
+      label: 'Phone Number 1',
+      type: 'text',
+      placeholder: 'Enter the phone number 1',
+    },
+    {
+      name: 'phone_two',
+      label: 'Phone Number 2',
+      type: 'text',
+      placeholder: 'Enter the phone number 2',
+    },
+    {
+      name: 'email',
+      label: 'Email',
+      type: 'text',
+      placeholder: 'Enter the email',
+    },
+  ];
 
-export default Settings
+  return (
+    <ContentManager
+      apiBaseUrl="/additional-settings/settings/"
+      fields={contentFields}
+      title="Additional Settings"
+    />
+  );
+};
+
+export default Settings;

@@ -5,13 +5,14 @@ const Banner = ({ image, title }) => {
         <header
             className="w-full h-[450px] sm:h-[450px] lg:h-[550px] flex flex-col items-center justify-center"
             style={{
-                background: `linear-gradient(to right, rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(${image})`,
+                backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url(${image})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                backgroundPosition: "center center"
+                objectFit: "fill",
+                objectPosition: "center center",
             }}
         >
-            <div dangerouslySetInnerHTML={{ __html: title }} className="relative top-10 text-white text-center px-4" />
+            <div dangerouslySetInnerHTML={{ __html: title }} className="relative top-10 space-y-4 md:space-y-6 text-white text-center px-4" />
         </header>
     );
 };

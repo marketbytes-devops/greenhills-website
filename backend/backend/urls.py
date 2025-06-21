@@ -8,6 +8,16 @@ urlpatterns = [
     path("api/", include("authapp.urls")),
     path("api/home/", include("home.urls")),
     path("api/about/", include("about.urls")),
+    path("api/stay/", include("stay.urls")),
+    path("api/eat/", include("eat.urls")),
+    path('api/gather/', include('gather.urls')),
+    path("api/blog/", include("blog.urls")),
+    path("api/explore/", include("explore.urls")),
+    path("api/gallery/", include("gallery.urls")),
+    path("api/social-media/", include("social_media.urls")),
+    path("api/additional-settings/", include("additional_settings.urls")),
+    path("api/enquiry/", include("enquiry.urls")),
+    path("api/terms-and-privacy/", include("terms_and_privacy.urls")),
     path("documentation/", include("documentation.urls")),
 ]
 if settings.DEBUG:

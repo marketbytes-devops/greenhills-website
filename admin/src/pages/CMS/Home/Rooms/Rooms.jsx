@@ -30,6 +30,12 @@ const Rooms = () => {
             placeholder: 'Enter the description',
         },
         {
+            name: 'link',
+            label: 'Link',
+            type: 'text',
+            placeholder: 'Enter the link',
+        },
+        {
             name: 'order',
             label: 'Order',
             type: 'number',

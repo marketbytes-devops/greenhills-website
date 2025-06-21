@@ -35,7 +35,7 @@ const RatingSection = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <ContentManager
         apiBaseUrl="/home/home-rating/"
         fields={contentFields}

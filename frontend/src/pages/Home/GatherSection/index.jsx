@@ -71,6 +71,22 @@ const GatherSection = ({ className = "" }) => {
     return (
         <section className={`container-primary mx-auto ${className}`} aria-labelledby="gather-section-title">
             <div className="flex flex-col md:flex-row">
+                <div className="md:w-1/3 md:mt-0 md:pl-12 flex flex-col justify-start">
+                    {content && content.title && (
+                        <div
+                            id="gather-section-title"
+                            dangerouslySetInnerHTML={{ __html: content.title }}
+                        />
+                    )}
+                    {content && content.description && (
+                        <div dangerouslySetInnerHTML={{ __html: content.description }} className="mt-4" />
+                    )}
+                    {content && content.link && (
+                          <div className="mt-4">
+                              <MainButton label="More Info" className="text-gray-100" onClick={() => (window.location.href = content.link)} />
+                          </div>
+                    )}
+                </div>
                 <div className="flex flex-col md:flex-row md:w-2/3 space-y-6 md:space-y-0 md:space-x-6">
                     {images && images.map((item) => (
                         <div key={item.id} className="flex-1">
@@ -98,22 +114,6 @@ const GatherSection = ({ className = "" }) => {
                             </Link>
                         </div>
                     ))}
-                </div>
-                <div className="md:w-1/3 md:mt-0 md:pl-12 flex flex-col justify-start">
-                    {content && content.title && (
-                        <div
-                            id="gather-section-title"
-                            dangerouslySetInnerHTML={{ __html: content.title }}
-                        />
-                    )}
-                    {content && content.description && (
-                        <div dangerouslySetInnerHTML={{ __html: content.description }} className="mt-4" />
-                    )}
-                    {content && content.link && (
-                          <div className="mt-4">
-                              <MainButton label="More Info" className="text-gray-100" onClick={() => (window.location.href = content.link)} />
-                          </div>
-                    )}
                 </div>
             </div>
         </section>

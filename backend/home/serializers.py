@@ -32,6 +32,7 @@ class HomeAboutTitleSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "description",
+            "link"
         ]
 
 
@@ -74,6 +75,7 @@ class HomeRoomsTitleSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "description",
+            "link",
         ]
 
 
@@ -86,6 +88,7 @@ class HomeRoomsSerializer(serializers.ModelSerializer):
             "image",
             "title",
             "description",
+            "link",
             "order",
         ]
 

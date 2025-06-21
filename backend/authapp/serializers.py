@@ -24,7 +24,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = CustomUser
-        fields = ['email', 'name', 'username', 'address', 'phone_number', 'image']
+        fields = ['email', 'name', 'username', 'image']
         read_only_fields = ['email']
 
 class ChangePasswordSerializer(serializers.Serializer):

@@ -11,6 +11,7 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
   const [formEntries, setFormEntries] = useState([{ id: Date.now(), data: {} }]);
   const [editingId, setEditingId] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [fieldOptions, setFieldOptions] = useState({});
 
   const quillModules = {
     toolbar: [
@@ -26,22 +27,34 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
   };
 
   useEffect(() => {
+    const options = {};
+    fields.forEach((field) => {
+      if (field.type === "select" && field.options) {
+        options[field.name] = field.options.reduce((acc, opt) => {
+          acc[opt.value] = opt.label;
+          return acc;
+        }, {});
+      }
+    });
+    setFieldOptions(options);
     fetchItems();
-  }, []);
+  }, [fields]);
 
   const fetchItems = async () => {
     try {
       const response = await apiClient.get(apiBaseUrl);
-      setItems(response.data);
+      const data = Array.isArray(response.data) ? response.data : [];
+      setItems(data);
     } catch (error) {
       console.error("Error fetching items:", error);
       toast.error(error.response?.data?.error || "Failed to load items");
+      setItems([]);
     }
   };
 
   const validateEntry = (entry) => {
     for (const field of fields) {
-      if (field.required && !entry.data[field.name]) {
+      if (field.required && (entry.data[field.name] === undefined || entry.data[field.name] === "")) {
         return `${field.label} is required`;
       }
       if (field.type === "number" && entry.data[field.name]) {
@@ -76,7 +89,7 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
           if (field.type === "file" && editingId && !(value instanceof File)) {
             return;
           }
-          if (value !== null && value !== undefined) {
+          if (value !== null && value !== undefined && value !== "") {
             formData.append(field.name, value);
           }
         });
@@ -98,6 +111,7 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
       const errorMessage =
         error.response?.data?.image?.[0] ||
         error.response?.data?.error ||
+        error.response?.data?.eat_page_create?.[0] ||
         "Failed to save item";
       toast.error(errorMessage);
     } finally {
@@ -109,7 +123,11 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
     setEditingId(item.id);
     const sanitizedData = {};
     fields.forEach((field) => {
-      sanitizedData[field.name] = item[field.name] || (field.type === "textEditor" ? "" : item[field.name]);
+      if (field.name === 'eat_page_create' || field.name === 'tab_name') {
+        sanitizedData[field.name] = item[field.name]?.id || item[field.name] || '';
+      } else {
+        sanitizedData[field.name] = item[field.name] || (field.type === "textEditor" ? "" : item[field.name]);
+      }
     });
     setFormEntries([{ id: Date.now(), data: sanitizedData }]);
   };
@@ -235,12 +253,18 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
               <div>
                 <p className="text-sm text-gray-500">ID: {item.id}</p>
                 {fields
-                  .filter((field) => field.name !== "image" && item[field.name] !== undefined)
+                  .filter((field) => field.name !== "image")
                   .map((field) => (
                     <div key={field.name} className="mb-2">
                       <p className="text-sm font-medium text-gray-700">{field.label}:</p>
-                      {field.type === "textEditor" ? (
-                        <p
+                      {field.type === "select" ? (
+                        <p className="text-gray-600 text-sm">
+                          {fieldOptions[field.name]?.[item[field.name]] ||
+                            item[`${field.name}_label`] ||
+                            `No ${field.label.toLowerCase()}`}
+                        </p>
+                      ) : field.type === "textEditor" ? (
+                        <div
                           className="text-gray-600 text-sm line-clamp-2"
                           dangerouslySetInnerHTML={{
                             __html: item[field.name] || `No ${field.label.toLowerCase()}`,
@@ -326,6 +350,22 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
                     className="bg-white"
                     aria-required={field.required}
                   />
+                ) : field.type === "select" ? (
+                  <select
+                    id={`${field.name}-${entry.id}`}
+                    name={field.name}
+                    value={entry.data[field.name] || ""}
+                    onChange={(e) => handleInputChange(e, entry.id)}
+                    className="w-full text-sm p-2 border border-gray-800 focus:outline-indigo-500 focus:ring focus:ring-indigo-500 opacity-80"
+                    aria-required={field.required}
+                  >
+                    <option value="">Select an option</option>
+                    {field.options?.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
                 ) : (
                   <input
                     id={`${field.name}-${entry.id}`}
@@ -391,9 +431,15 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
               role="list"
               aria-label="Content list"
             >
-              {items.map((item, index) => (
-                <ShowCard key={item.id} item={item} index={index} fields={fields} />
-              ))}
+              {Array.isArray(items) && items.length > 0 ? (
+                items.map((item, index) => (
+                  <ShowCard key={item.id} item={item} index={index} fields={fields} />
+                ))
+              ) : (
+                <p className="text-gray-500 text-sm w-full text-center py-4">
+                  No items to display
+                </p>
+              )}
               {provided.placeholder}
             </div>
           )}

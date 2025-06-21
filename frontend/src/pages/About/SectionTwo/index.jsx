@@ -26,8 +26,8 @@ const SectionTwo = () => {
       {cardsData.map((card, index) => {
         const isEven = index % 2 === 0;
         const flexDirection = isEven ? "md:flex-row" : "md:flex-row-reverse";
-        const bgColor = isEven ? "bg-black" : "bg-white";
-        const textColor = isEven ? "text-white" : "text-black";
+        const bgColor = isEven ? "bg-secondaryBlack" : "bg-gray-100";
+        const textColor = isEven ? "text-gray-100" : "text-black";
 
         return (
           <div

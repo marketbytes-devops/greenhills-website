@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import StripHtml from "../../../components/stripHTML";
 import { fetchRooms, fetchRoomsTitle } from "../../../helpers/apiService";
+import StripHtml from "../../../components/stripHtml";
+import { Link } from "react-router-dom";
 
 const Rooms = () => {
     const [roomCards, setRoomCards] = useState([]);
@@ -39,17 +40,17 @@ const Rooms = () => {
                         )}
                     </div>
                 )}
-                <button
-                    className="flex group items-center justify-center space-x-2 bg-black text-md text-white font-medium w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
+                <Link to={titleData.link}
+                    className="flex group items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-normal w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
                 >
                     See More
-                </button>
+                </Link>
             </div>
 
             <div className="space-y-8 md:space-y-16 mt-8 lg:mt-10">
                 {roomCards.map((card) => (
-                    <div
-                        className="w-full flex flex-col md:flex-row card gap-4 md:gap-6 h-auto md:h-[300px]"
+                    <Link to={card.link}
+                        className="group w-full flex flex-col md:flex-row card gap-4 md:gap-6 h-auto md:h-[300px]"
                         key={card.id}
                     >
                         <div className="w-full md:w-1/2">
@@ -82,7 +83,7 @@ const Rooms = () => {
                                 />
                             </button>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </>

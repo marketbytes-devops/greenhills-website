@@ -15,7 +15,13 @@ const Title = () => {
             label: 'Description',
             type: 'textEditor',
             placeholder: 'Enter the description',
-        }
+        },
+        {
+            name: 'link',
+            label: 'See More Link',
+            type: 'text',
+            placeholder: 'Enter the link',
+        },
     ];
 
     return (

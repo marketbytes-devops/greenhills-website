@@ -48,7 +48,7 @@ const Layout = ({ isAuthenticated, setIsAuthenticated }) => {
   return (
     <div className="flex min-h-screen bg-gray-100">
       <motion.div
-        className={`fixed inset-y-0 left-0 z-30 w-72 bg-gray-900 text-white transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`fixed inset-y-0 left-0 z-30 w-72 text-white transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
           } md:translate-x-0 transition-transform duration-300 ease-in-out`}
         initial={{ opacity: 0, x: '-100%' }}
         animate={{ opacity: 1, x: isSidebarOpen ? 0 : '-100%' }}
@@ -58,7 +58,7 @@ const Layout = ({ isAuthenticated, setIsAuthenticated }) => {
       </motion.div>
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 z-20 bg-black opacity-50 md:hidden"
+          className="fixed inset-0 z-20 bg-secondaryBlack opacity-50 md:hidden"
           onClick={toggleSidebar}
         ></div>
       )}

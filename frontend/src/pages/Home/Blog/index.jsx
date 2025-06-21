@@ -170,7 +170,7 @@ const Blog = ({ className = '' }) => {
                             {blogItems.map((_, index) => (
                                 <div
                                     key={index}
-                                    className={`rounded-full transition-all duration-300 ${index === currentSlide ? 'w-10 h-2 bg-black' : 'w-2 h-2 bg-gray-200'
+                                    className={`rounded-full transition-all duration-300 ${index === currentSlide ? 'w-10 h-2 bg-secondaryBlack' : 'w-2 h-2 bg-gray-200'
                                         }`}
                                 />
                             ))}

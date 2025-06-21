@@ -4,6 +4,7 @@ import SectionTwo from './SectionTwo';
 import FirstSection from './SectionThree/FirstSection';
 import SectionFour from './SectionFour';
 import SectionFive from './SectionFive';
+import TitleSection from '../Home/AboutSection/TitleSection';
 
 
 const About = () => {
@@ -14,7 +15,8 @@ const About = () => {
     { id: 'about-section-two', label: 'About Section Two', content: <SectionTwo /> },
     { id: 'about-section-three', label: 'About Section Three', content: <FirstSection /> },
     { id: 'about-section-four', label: 'About Section Four', content: <SectionFour /> },
-    { id: 'about-section-five', label: 'About Section Five', content: <SectionFive /> },
+    { id: 'about-section-explore', label: 'About Section Five', content: <TitleSection /> },
+    { id: 'about-section-five', label: 'About Section Six', content: <SectionFive /> },
   ];
 
   return (

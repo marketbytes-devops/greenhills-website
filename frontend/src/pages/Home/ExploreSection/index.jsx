@@ -35,7 +35,7 @@ const ExploreSection = () => {
         <div className="max-w-lg md:max-w-4xl" dangerouslySetInnerHTML={{ __html: data.description }} />
         <div className="pt-2">
           <button
-            className="flex group items-center justify-center space-x-2 bg-black text-md text-white font-medium w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
+            className="flex group items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-normal w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
           >
             Explore
           </button>

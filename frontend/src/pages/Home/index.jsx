@@ -1,5 +1,4 @@
 import Hero from "./Hero";
-import BookingForm from "../../components/Forms/BookingForm";
 import Services from "./Services";
 import AboutSection from "./AboutSection";
 import RatingCard from "./RatingCard";
@@ -10,6 +9,7 @@ import GatherSection from "./GatherSection";
 import Team from "./Team";
 import Blog from "./Blog";
 import GetInTouch from "../../components/UiComponents/GetInTouch";
+import BookingForm from "../../components/UiComponents/Forms/BookingForm";
 
 const Home = () => {
   return (
@@ -17,10 +17,10 @@ const Home = () => {
       <div>
         <Hero />
       </div>
-      <div>
+      <div className="z-40 relative -top-0 md:-top-32 mt-8 md:mt-0">
         <BookingForm />
       </div>
-      <section>
+      <section className="-mt-20">
         <Services />
       </section>
       <section className="container-secondary mx-auto">

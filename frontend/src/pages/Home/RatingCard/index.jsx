@@ -57,7 +57,7 @@ const RatingCard = () => {
           {statsSection.map((stat, index) => (
             <div
               key={stat.id || index}
-              className={`rounded-full space-y-2 md:space-y-4 aspect-square flex flex-col items-center justify-center w-40 h-40 md:w-60 md:h-60 ${index % 2 === 0 ? 'bg-black' : 'bg-[#191919]'}`}
+              className={`rounded-full space-y-2 md:space-y-4 aspect-square flex flex-col items-center justify-center w-40 h-40 md:w-60 md:h-60 ${index % 2 === 0 ? 'bg-secondaryBlack' : 'bg-[#191919]'}`}
             >
               <span dangerouslySetInnerHTML={{ __html: stat.value || 'N/A' }} />
               <span className="text-center px-2" dangerouslySetInnerHTML={{ __html: stat.label || 'No Label' }} />

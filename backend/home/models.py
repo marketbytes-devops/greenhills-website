@@ -48,7 +48,8 @@ class HomeServices(models.Model):
 class HomeAboutTitle(models.Model):
     title = models.CharField(max_length=500, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-
+    link = models.CharField(max_length=255, null=True, blank=True)
+    
     def __str__(self):
         return self.title or "Home About Title"
 
@@ -91,7 +92,8 @@ class HomeStats(models.Model):
 class HomeRoomsTitle(models.Model):
     title = models.CharField(max_length=500, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-
+    link = models.CharField(max_length=255, null=True, blank=True)
+    
     def __str__(self):
         return self.title or "Home Rooms Title"
 
@@ -110,6 +112,7 @@ class HomeRooms(models.Model):
     index = models.CharField(max_length=100, null=True, blank=True)
     title = models.CharField(max_length=500, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    link = models.CharField(max_length=255, null=True, blank=True)
     order = models.IntegerField(default=0, validators=[MinValueValidator(0)])
 
     def __str__(self):
