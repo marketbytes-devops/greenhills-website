@@ -1,26 +1,26 @@
-import axios from 'axios';
+import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8000/api/',
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:6240/api/",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
 const getAbsoluteImageUrl = (url) => {
   if (!url) return null;
-  if (url.startsWith('http')) return url; 
-  return `http://localhost:8000${url}`; 
+  if (url.startsWith("http")) return url;
+  return `${import.meta.env.VITE_BACKEND_URL || "http://localhost:6240"}${url}`;
 };
 
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('access_token');
-    if (token && config.url !== 'login/') {
+    const token = localStorage.getItem("access_token");
+    if (token && config.url !== "login/") {
       config.headers.Authorization = `Bearer ${token}`;
     }
     if (config.data instanceof FormData) {
-      delete config.headers['Content-Type'];
+      delete config.headers["Content-Type"];
     }
     return config;
   },
@@ -41,27 +41,27 @@ apiClient.interceptors.response.use(
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
-      originalRequest.url !== 'login/' &&
-      originalRequest.url !== 'token/refresh/'
+      originalRequest.url !== "login/" &&
+      originalRequest.url !== "token/refresh/"
     ) {
       originalRequest._retry = true;
       try {
-        const refreshToken = localStorage.getItem('refresh_token');
+        const refreshToken = localStorage.getItem("refresh_token");
         if (!refreshToken) {
-          throw new Error('No refresh token available');
+          throw new Error("No refresh token available");
         }
-        const response = await apiClient.post('token/refresh/', {
+        const response = await apiClient.post("token/refresh/", {
           refresh: refreshToken,
         });
         const newAccessToken = response.data.access;
-        localStorage.setItem('access_token', newAccessToken);
+        localStorage.setItem("access_token", newAccessToken);
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         return apiClient(originalRequest);
       } catch (refreshError) {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        localStorage.removeItem('isAuthenticated');
-        window.location.href = '/login';
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        localStorage.removeItem("isAuthenticated");
+        window.location.href = "/login";
         return Promise.reject(refreshError);
       }
     }
