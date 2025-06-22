@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchAboutSectionTwo } from "../../../helpers/apiService";
-import StripHtml from "../../../components/stripHtml";
+import StripHtml from "../../../components/stripHTML";
 
 const SectionTwo = () => {
   const [cardsData, setCardsData] = useState([]);

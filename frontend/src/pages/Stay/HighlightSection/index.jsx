@@ -1,4 +1,4 @@
-import StripHtml from "../../../components/stripHtml";
+import StripHtml from "../../../components/stripHTML";
 
 const HighlightSection = ({ highlights }) => {
   if (!highlights || !highlights.length) {
@@ -10,7 +10,10 @@ const HighlightSection = ({ highlights }) => {
     const ratingNum = parseInt(rating) || 0;
     for (let i = 1; i <= 5; i++) {
       stars.push(
-        <span key={i} className={i <= ratingNum ? "text-yellow-400" : "text-gray-400"}>
+        <span
+          key={i}
+          className={i <= ratingNum ? "text-yellow-400" : "text-gray-400"}
+        >
           ★
         </span>
       );
@@ -42,15 +45,21 @@ const HighlightSection = ({ highlights }) => {
               className={`w-full px-4 md:px-16 py-4 md:py-16 md:w-1/2 h-[550px] ${bgColor} ${textColor} flex flex-col justify-center p-8`}
             >
               <div dangerouslySetInnerHTML={{ __html: card.title }} />
-              {(card.discounted_price || card.original_price || card.rating) && (
+              {(card.discounted_price ||
+                card.original_price ||
+                card.rating) && (
                 <div className="flex items-center space-x-4 mt-2">
                   {card.discounted_price && (
                     <p className="font-medium">Rs. {card.discounted_price}</p>
                   )}
                   {card.original_price && (
-                    <p className="font-medium line-through">Rs. {card.original_price}</p>
+                    <p className="font-medium line-through">
+                      Rs. {card.original_price}
+                    </p>
                   )}
-                  {card.rating && <div className="flex">{renderStars(card.rating)}</div>}
+                  {card.rating && (
+                    <div className="flex">{renderStars(card.rating)}</div>
+                  )}
                 </div>
               )}
               <div
