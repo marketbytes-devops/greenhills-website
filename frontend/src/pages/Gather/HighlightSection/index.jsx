@@ -1,4 +1,4 @@
-import StripHtml from "../../../components/stripHtml";
+import StripHtml from "../../../components/stripHTML";
 
 const HighlightSection = ({ highlights, titleData }) => {
   if (!highlights || !highlights.length || !titleData) {

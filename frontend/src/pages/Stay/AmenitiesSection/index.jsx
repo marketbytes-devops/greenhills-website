@@ -1,5 +1,5 @@
 import Slider from "react-slick";
-import StripHtml from "../../../components/stripHtml";
+import StripHtml from "../../../components/stripHTML";
 
 const AmenitiesSection = ({ sectionData, cardsData }) => {
   if (
@@ -80,7 +80,9 @@ const AmenitiesSection = ({ sectionData, cardsData }) => {
                     <div className="p-4 text-center">
                       <div
                         className="line-clamp-2 group-hover:text-white transition-colors duration-300 text-gray-900"
-                        dangerouslySetInnerHTML={{ __html: card.title || "No Title" }}
+                        dangerouslySetInnerHTML={{
+                          __html: card.title || "No Title",
+                        }}
                       />
                     </div>
                   </div>
