@@ -30,7 +30,7 @@ const Hero = () => {
     <>
       <Banner image={bannerData.image} title={bannerData.title} />
       <header
-        className="container-secondary mx-auto my-8 sm:my-8 lg:my-16 w-full h-auto flex flex-col items-center justify-center"
+        className="container-secondary mx-auto my-8 sm:my-8 lg:my-16"
       >
         <div
           dangerouslySetInnerHTML={{ __html: bannerData.description }}
