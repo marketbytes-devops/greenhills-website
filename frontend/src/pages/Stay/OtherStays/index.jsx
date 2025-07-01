@@ -19,7 +19,7 @@ const OtherStays = ({ sectionData, className = "" }) => {
       aria-labelledby="other-stays-title"
     >
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/3 md:mt-0 md:pl-12 flex flex-col justify-start">
+        <div className="md:w-1/3 md:mt-0 md:pl-12 pr-0 md:pr-6 flex flex-col justify-start">
           {content?.title && (
             <div
               id="other-stays-title"
@@ -34,12 +34,12 @@ const OtherStays = ({ sectionData, className = "" }) => {
           )}
           {content?.link && (
             <div className="mt-4">
-              <Link to={content.link}>
+              {/* <Link to={content.link}>
                 <MainButton
                   label="More Info"
                   className="text-gray-100 hover:text-[#2b6843] transition-all duration-300"
                 />
-              </Link>
+              </Link> */}
             </div>
           )}
         </div>
