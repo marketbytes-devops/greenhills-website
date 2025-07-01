@@ -89,7 +89,7 @@ const Nav = () => {
     },
     { name: 'Blogs', to: '/blogs', basePath: '/blogs', hasChildRoutes: true },
     { name: 'Explore', to: '/explore', basePath: '/explore' },
-    { name: 'Gallery', to: '/goals', basePath: '/goals' },
+    { name: 'Gallery', to: '/gallery', basePath: '/gallery' },
   ];
 
   const dropdownVariants = {

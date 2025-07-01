@@ -4,26 +4,52 @@ import { fetchBlogPostsData } from "../../../helpers/apiService";
 
 const BlogPost = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     fetchBlogPostsData()
       .then((response) => {
         setBlogs(response.data || []);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching blog posts:", error);
+        setError("Failed to load blog posts. Please try again later.");
         setBlogs([]);
+        setLoading(false);
       });
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-16 min-h-[400px]">
+        <div className="text-gray-600 text-lg">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center py-16 min-h-[400px]">
+        <div className="text-red-500 text-lg">{error}</div>
+      </div>
+    );
+  }
+
   if (!blogs || blogs.length === 0) {
-    return <div></div>;
+    return (
+      <div className="flex items-center justify-center py-16 min-h-[400px]">
+        <div className="text-gray-600 text-lg">No blog posts available.</div>
+      </div>
+    );
   }
 
   return (
-    <div className="py-16 container-primary mx-auto grid grid-cols-1 md:grid-cols-3 items-start justify-between space-y-6 md:space-y-0 md:space-x-6">
-      {blogs.map((posts) => (
-        <div key={posts.id} className="flex-1">
+    <div className="py-16 px-4 sm:px-6 lg:px-0 mx-auto container-secondary">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {blogs.map((posts) => (
           <Link to={posts.link} className="group">
             <div className="relative">
               <img
@@ -48,8 +74,8 @@ const BlogPost = () => {
               />
             )}
           </Link>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
