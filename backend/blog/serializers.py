@@ -9,6 +9,7 @@ class BlogBannerSerializer(serializers.ModelSerializer):
             "id",
             "image",
             "title",
+            "description",
         ]
         
 

@@ -14,7 +14,13 @@ const Hero = () => {
       label: 'Title',
       type: 'textEditor',
       placeholder: 'Enter banner title',
-    }
+    },
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'textEditor',
+      placeholder: 'Enter blog description',
+    },
   ];
 
   return (

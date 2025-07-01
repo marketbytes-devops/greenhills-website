@@ -13,9 +13,10 @@ const Hero = () => {
         setBannerData({
           image: data.image || "",
           title: data.title || "",
+          description: data.description || "",
         });
       } catch (error) {
-        setBannerData({ image: "", title: "" });
+        setBannerData({ image: "", title: "", description: "" });
       }
     };
     getBannerData();
@@ -28,6 +29,13 @@ const Hero = () => {
   return (
     <>
       <Banner image={bannerData.image} title={bannerData.title} />
+      <header
+        className="container-secondary mx-auto my-8 sm:my-8 lg:my-16 w-full h-auto flex flex-col items-center justify-center"
+      >
+        <div
+          dangerouslySetInnerHTML={{ __html: bannerData.description }}
+        />
+      </header>
     </>
   );
 };
