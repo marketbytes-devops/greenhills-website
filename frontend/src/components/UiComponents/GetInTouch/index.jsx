@@ -93,7 +93,7 @@ const GetInTouch = ({ className = '' }) => {
               Get in Touch
             </h3>
             <p className="text-gray-400 mb-6">
-              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
+              We’d love to hear from you! Whether you have questions, need assistance, or want to book your next stay, our team is here to help. Fill out the form below, and we’ll get back to you promptly.
             </p>
           </div>
 

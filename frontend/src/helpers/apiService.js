@@ -76,7 +76,7 @@ export const fetchBlogTitle = () => {
 };
 
 export const fetchBlogItems = () => {
-  return apiService.get("/home/home-blog-items/");
+  return apiService.get("/blog/blog-posts/");
 };
 
 // about us

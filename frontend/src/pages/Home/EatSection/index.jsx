@@ -77,7 +77,7 @@ const EatSection = ({ className = "" }) => {
                 <div className="flex flex-col md:flex-row md:w-2/3 space-y-6 md:space-y-0 md:space-x-6">
                     {images && images.map((item) => (
                         <div key={item.id} className="flex-1">
-                            <Link to={item.link} className="group">
+                            <Link to={`eat/${item.link}`} className="group">
                                 <div className="relative">
                                     <img
                                         src={item.image || "https://via.placeholder.com/300x200?text=No+Image"}
@@ -86,7 +86,7 @@ const EatSection = ({ className = "" }) => {
                                         loading="lazy"
                                     />
                                     {item.title && (
-                                    <div className="mt-4 flex items-center justify-start space-x-2">
+                                    <div className="mt-6 flex items-center justify-start space-x-2">
                                         <div dangerouslySetInnerHTML={{ __html: item.title }} />
                                         <FontAwesomeIcon
                                             icon={faArrowRight}
@@ -103,7 +103,7 @@ const EatSection = ({ className = "" }) => {
                         </div>
                     ))}
                 </div>
-                <div className="md:w-1/3 md:mt-0 md:pl-12 flex flex-col justify-start">
+                <div className="md:w-1/3 md:pl-12 flex flex-col justify-start mt-6 md:mt-0">
                     {content && content.title && (
                         <div
                             id="eat-section-title"
@@ -111,11 +111,11 @@ const EatSection = ({ className = "" }) => {
                         />
                     )}
                     {content && content.description && (
-                        <div dangerouslySetInnerHTML={{ __html: content.description }} className="mt-4" />
+                        <div dangerouslySetInnerHTML={{ __html: content.description }} className="mt-0 md:mt-4" />
                     )}
                     {content && content.link && (
                         <div className="mt-4">
-                            <MainButton label="More Info" onClick={() => (window.location.href = content.link)} />
+                            <MainButton label="Discover More" onClick={() => (window.location.href = `eat/${content.link}`)} />
                         </div>
                     )}
                 </div>

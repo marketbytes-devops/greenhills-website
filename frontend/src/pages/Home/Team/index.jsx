@@ -93,7 +93,7 @@ const Team = () => {
                       }}
                     />
                     <div
-                      className="mb-4 text-gray-600"
+                      className="mb-4"
                       dangerouslySetInnerHTML={{
                         __html: member.role || "Unknown Role",
                       }}

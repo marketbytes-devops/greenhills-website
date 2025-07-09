@@ -10,7 +10,7 @@ const Footer = () => {
   const { setIsModalOpen } = useModal();
   const currentYear = new Date().getFullYear();
   const [settings, setSettings] = useState({
-    description: 'Webinar event for mental training and personal development for young people',
+    description: 'Experience the rhythm of rain, trees, and quiet hills.',
     location: 'State Bank Road, Valparai, Tamil Nadu 642127',
     phone_one: '094434 09489',
     phone_two: '094434 85876',

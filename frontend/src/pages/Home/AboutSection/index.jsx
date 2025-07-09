@@ -18,6 +18,7 @@ const AboutSection = ({ className = "" }) => {
       middleBottomImage: null,
       rightImage: null,
     },
+    link: "",
   });
   const [error, setError] = useState(null);
 
@@ -29,6 +30,7 @@ const AboutSection = ({ className = "" }) => {
           fetchAboutSectionImages(),
         ]);
 
+        console.log("Title Response:", titleResponse.data);
         console.log("Image Response:", imageResponse.data);
 
         const titleData =
@@ -66,6 +68,7 @@ const AboutSection = ({ className = "" }) => {
           title: titleData.title || "",
           description: titleData.description || "",
           image: newImage,
+          link: titleData.link || "",
         });
         setError(null);
       } catch (error) {
@@ -80,6 +83,7 @@ const AboutSection = ({ className = "" }) => {
             middleBottomImage: null,
             rightImage: null,
           },
+          link: "",
         });
       }
     };
@@ -88,12 +92,17 @@ const AboutSection = ({ className = "" }) => {
   }, []);
 
   const handleButtonClick = () => {
-    if (link) {
-      navigate(link);
+    console.log("Link value:", sectionData.link);
+    if (sectionData.link) {
+      navigate(`/${sectionData.link}`);
     }
   };
 
-  const { title, description, image } = sectionData;
+  const handleButtonGalleryClick = () => {
+    navigate('/gallery');
+  };
+
+  const { title, description, image, link } = sectionData;
   const hasContent =
     title || description || Object.values(image).some((img) => img !== null);
 
@@ -123,27 +132,8 @@ const AboutSection = ({ className = "" }) => {
       className={`slider-container py-8 mx-auto mb-2 lg:mb-6 ${className}`}
       aria-labelledby="about-title"
     >
-      <div className="flex flex-col md:flex-row gap-0 md:gap-16 items-start mb-12">
-        <div className="md:w-1/2">
-          {title && (
-            <div id="about-title" dangerouslySetInnerHTML={{ __html: title }} />
-          )}
-        </div>
-        <div className="md:w-1/2 flex flex-col gap-6">
-          {description && (
-            <div dangerouslySetInnerHTML={{ __html: description }} />
-          )}
-          <MainButton
-            label="More Info"
-            onClick={handleButtonClick}
-            className="text-black hover:text-primary"
-            aria-label="Learn more about this section"
-          />
-        </div>
-      </div>
-
       <div
-        className="grid grid-cols-1 md:grid-cols-3 gap-4"
+        className="grid grid-cols-1 md:grid-cols-3 gap-4 -mt-6"
         role="region"
         aria-label="Image gallery"
       >
@@ -192,7 +182,7 @@ const AboutSection = ({ className = "" }) => {
       </div>
 
       <div className="pt-10 flex items-center justify-center">
-        <button className="flex group items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-normal w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+        <button className="flex group items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-normal w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300" onClick={handleButtonGalleryClick}>
           View More
         </button>
       </div>
@@ -202,7 +192,6 @@ const AboutSection = ({ className = "" }) => {
 
 AboutSection.propTypes = {
   className: PropTypes.string,
-  link: PropTypes.string,
 };
 
 export default memo(AboutSection);

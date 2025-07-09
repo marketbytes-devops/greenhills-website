@@ -37,7 +37,7 @@ const RatingCard = () => {
       <div className="container-secondary mx-auto flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0">
         <div className="flex-1 flex flex-col gap-y-4 md:gap-y-6 px-4 md:px-0">
           <div dangerouslySetInnerHTML={{ __html: ratingSection.description || 'No Description' }} />
-          <div className="hidden lg:block bg-[#181818] w-[90%] h-[1px]"></div>
+          <div className="hidden lg:block bg-[#494949] w-[90%] h-[1px]"></div>
           <div className="flex items-center gap-x-2">
             {[...Array(5)].map((_, i) => (
               <span

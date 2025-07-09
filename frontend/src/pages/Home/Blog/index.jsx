@@ -28,9 +28,9 @@ const Blog = ({ className = "" }) => {
             ? titleResponse.data[0]
             : { title: "Latest Blog Posts", description: "" };
 
-        const sortedItems = (itemsResponse.data || []).sort(
-          (a, b) => (a.order || 0) - (b.order || 0)
-        );
+        const sortedItems = (itemsResponse.data || [])
+          .sort((a, b) => (a.order || 0) - (b.order || 0))
+          .slice(0, 3);
 
         setSectionData({
           title: titleData.title || "Latest Blog Posts",
@@ -54,9 +54,9 @@ const Blog = ({ className = "" }) => {
 
   const settings = {
     dots: false,
-    infinite: blogItems.length > (blogItems.length === 2 ? 2 : 4),
+    infinite: blogItems.length > (blogItems.length === 2 ? 2 : 3), 
     speed: 500,
-    slidesToShow: blogItems.length === 2 ? 2 : 4,
+    slidesToShow: blogItems.length >= 3 ? 3 : blogItems.length, 
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -68,7 +68,7 @@ const Blog = ({ className = "" }) => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: blogItems.length === 2 ? 2 : 2,
+          slidesToShow: blogItems.length >= 2 ? 2 : blogItems.length,
           slidesToScroll: 1,
           centerMode: true,
           centerPadding: "0px",
@@ -110,10 +110,6 @@ const Blog = ({ className = "" }) => {
     );
   }
 
-  const handleButtonClick = () => {
-    console.log("More Info button clicked!");
-  };
-
   return (
     <section
       className={`mb-2 lg:mb-6 ${className}`}
@@ -135,7 +131,7 @@ const Blog = ({ className = "" }) => {
             )}
             <MainButton
               label="More Info"
-              onClick={handleButtonClick}
+              onClick={() => (window.location.href = "/blogs")}
               className="text-black hover:text-primary"
               aria-label="Learn more about this section"
             />
@@ -148,7 +144,7 @@ const Blog = ({ className = "" }) => {
                 {blogItems.map((item, index) => (
                   <div key={item.id || index} className="p-4">
                     <Link
-                      to={item.link}
+                      to={`blogs/${item.link}`}
                       className="flex flex-col items-start text-left"
                     >
                       <div className="w-full h-52 overflow-hidden mb-4">

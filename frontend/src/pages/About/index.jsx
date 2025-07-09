@@ -1,5 +1,6 @@
 import GetInTouch from "../../components/UiComponents/GetInTouch";
 import AboutSection from "../Home/AboutSection";
+import Services from "../Home/Services";
 import Hero from "./Hero";
 import SectionFive from "./SectionFive";
 import SectionFour from "./SectionFour";
@@ -14,7 +15,7 @@ const About = () => {
         <SectionTwo />
       </section>
       <section>
-        <SectionThree />
+        <Services/>
       </section>
       <section className="mx-auto my-8 sm:my-8 lg:my-16">
         <SectionFour />
