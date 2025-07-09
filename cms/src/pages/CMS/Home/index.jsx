@@ -15,7 +15,7 @@ const Home = () => {
 
   const tabs = [
     { id: 'home-banner', label: 'Header', content: <Hero /> },
-    { id: 'home-services', label: 'Services', content: <Services /> },
+    { id: 'home-services', label: 'Amenities', content: <Services /> },
     { id: 'home-about-section', label: 'About Section', content: <TitleSection /> },
     { id: 'home-rating', label: 'Rating', content: <RatingSection /> },
     { id: 'home-rooms', label: 'Rooms Section', content: <Title /> },

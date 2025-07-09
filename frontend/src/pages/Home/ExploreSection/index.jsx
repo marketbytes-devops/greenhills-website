@@ -27,7 +27,7 @@ const ExploreSection = () => {
       <div
         className="w-full h-[450px] md:h-[550px] bg-gradient-to-r from-white/80 to-black/50 relative flex items-center"
         style={{
-          backgroundImage: `url(${data.image})`,
+          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(${data.image})`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover"

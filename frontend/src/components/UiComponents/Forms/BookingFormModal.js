@@ -137,6 +137,7 @@ export default function BookingFormModal() {
 
   return (
     <div className="">
+      <h2 className="text-2xl font-bold relative -top-4">Ready to Relax?</h2>
       <style>
         {`
           .react-datepicker-wrapper {
