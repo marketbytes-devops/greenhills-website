@@ -13,9 +13,7 @@ const Eat = () => {
     const tabs = [
         { id: 'eat-create-page', label: 'Create Detailed Page', content: <CreatePage /> },
         { id: 'eat-banner', label: 'Detailed Page Header Section', content: <Hero /> },
-        { id: 'eat-time', label: 'Detailed Page Time Section', content: <OpeningClosingTime /> },
         { id: 'eat-menu-listings-second', label: 'Detailed Page Menu Tab Section', content: <MenuTabCreate /> },
-        { id: 'eat-menu-listings-first', label: 'Detailed Page Our Menu Section', content: <MenuFirstSection /> },
         { id: 'eat-amenities', label: 'Detailed Page Amenities Section', content: <AmenitiesFirstSection /> },
         { id: 'eat-explore', label: 'Detailed Page Explore Section', content: <ExploreSection /> },
     ];

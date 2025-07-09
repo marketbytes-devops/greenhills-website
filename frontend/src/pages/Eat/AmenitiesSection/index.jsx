@@ -56,7 +56,7 @@ const AmenitiesSection = ({ sectionData, cardsData }) => {
   return (
     <>
       {(sectionData?.title || sectionData?.description) && (
-        <div className="text-center max-w-4xl mx-auto">
+        <div className="text-center max-w-5xl mx-auto">
           {sectionData.title && (
             <div
               className="pb-10 space-y-6"

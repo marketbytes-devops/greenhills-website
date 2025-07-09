@@ -6,7 +6,7 @@ const ServicesSection = ({ services }) => {
   }
 
   return (
-    <section className="container-primary mx-auto" aria-labelledby="gather-services-section">
+    <section className="container-primary mx-auto py-8 md:py-16" aria-labelledby="gather-services-section">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {services.map((item) => (
           <div key={item.id} className="flex-1">

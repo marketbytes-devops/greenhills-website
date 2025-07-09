@@ -115,22 +115,9 @@ const Eat = () => {
           dangerouslySetInnerHTML={{ __html: bannerData.description }}
         />
       </div>
-      {timeData && (
-        <div className="mx-auto my-8 sm:my-8 lg:my-16 flex items-center justify-center">
-          <div className="w-fit flex items-center justify-center space-x-6 border border-secondaryBlack rounded-full px-4 py-2">
-            <div dangerouslySetInnerHTML={{ __html: timeData.opening_time }} />
-            <div dangerouslySetInnerHTML={{ __html: timeData.closing_time }} />
-          </div>
-        </div>
-      )}
       {tabData.length > 0 && (
         <section className="container-secondary mx-auto my-8 sm:my-8 lg:my-16">
           <MenuTabItems tabData={tabData} tabMenuItemsData={tabMenuItemsData} />
-        </section>
-      )}
-      {menuListingsData.length > 0 && (
-        <section className="bg-secondaryBlack py-8 md:py-16 my-8 sm:my-8 lg:my-16">
-          <MenuListings titleData={titleData} menuListingsData={menuListingsData} />
         </section>
       )}
       {(amenitiesTitleData || amenitiesListingsData.length > 0) && (

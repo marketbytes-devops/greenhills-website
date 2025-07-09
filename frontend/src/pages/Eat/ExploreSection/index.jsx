@@ -1,6 +1,7 @@
 import { useModal } from "../../../context/ModalProvider";
 
 const ExploreSection = ({ exploreData }) => {
+  const { setIsModalOpen } = useModal();
   if (!exploreData || !exploreData.image || !exploreData.title) {
     return null;
   }
@@ -34,9 +35,9 @@ const ExploreSection = ({ exploreData }) => {
         <div className="pt-2 flex items-start justify-start">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-medium w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-[#2b6843] hover:text-white transition-all duration-300"
+            className="flex items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-medium w-56 xl:w-56 h-10 xl:h-12 rounded-full hover:bg-[#2b6843] hover:text-white transition-all duration-300"
           >
-            Book Now
+            Take a Seat Now
           </button>
         </div>
       </div>

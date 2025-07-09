@@ -216,7 +216,7 @@ export default function BookingFormModal() {
             </label>
             <input
               id="mobile"
-              type="tel"
+              type="number"
               {...register("mobile", {
                 required: "Mobile number is required",
                 pattern: {

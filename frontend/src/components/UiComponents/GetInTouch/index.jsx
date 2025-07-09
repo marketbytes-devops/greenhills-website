@@ -158,7 +158,7 @@ const GetInTouch = ({ className = '' }) => {
                 </label>
                 <input
                   id="phone"
-                  type="tel"
+                  type="number"
                   {...register('phone', {
                     required: 'Phone is required',
                     pattern: {

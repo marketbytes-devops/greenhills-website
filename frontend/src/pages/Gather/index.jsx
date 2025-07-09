@@ -150,7 +150,7 @@ const Gather = () => {
       <section className="mx-auto mt-8 sm:mt-8 lg:mt-16">
         <HighlightSection titleData={highlightsTitleData} highlights={highlightsData} />
       </section>
-      <section className="mx-auto mt-8 sm:mt-8 lg:mt-16">
+      <section className="mx-auto mt-8 sm:mt-8 lg:mt-16 bg-black">
         <ServicesSection services={servicesData} />
       </section>
       <section className="mx-auto mt-8 sm:mt-8 lg:mt-16">
