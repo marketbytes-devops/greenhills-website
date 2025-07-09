@@ -1,6 +1,9 @@
 import StripHtml from "../../../components/stripHTML";
+import { useModal } from "../../../context/ModalProvider";
 
 const HighlightSection = ({ highlights }) => {
+  const { setIsModalOpen } = useModal();
+
   if (!highlights || !highlights.length) {
     return null;
   }
@@ -48,24 +51,30 @@ const HighlightSection = ({ highlights }) => {
               {(card.discounted_price ||
                 card.original_price ||
                 card.rating) && (
-                <div className="flex items-center space-x-4 mt-2">
-                  {card.discounted_price && (
-                    <p className="font-medium">Rs. {card.discounted_price}</p>
-                  )}
-                  {card.original_price && (
-                    <p className="font-medium line-through">
-                      Rs. {card.original_price}
-                    </p>
-                  )}
-                  {card.rating && (
-                    <div className="flex">{renderStars(card.rating)}</div>
-                  )}
-                </div>
-              )}
+                  <div className="flex items-center space-x-4 mt-2">
+                    {card.discounted_price && (
+                      <p className="font-medium">Rs. {card.discounted_price}</p>
+                    )}
+                    {card.original_price && (
+                      <p className="font-medium line-through">
+                        Rs. {card.original_price}
+                      </p>
+                    )}
+                    {card.rating && (
+                      <div className="flex">{renderStars(card.rating)}</div>
+                    )}
+                  </div>
+                )}
               <div
                 className="mt-4"
                 dangerouslySetInnerHTML={{ __html: card.description }}
               />
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="mt-8 flex group items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-normal w-40 xl:w-40 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
+              >
+                Book Now
+              </button>
             </div>
           </div>
         );

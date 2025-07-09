@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const GallerySection = ({ galleryData, className = "" }) => {
+  // Debug log to check incoming data
+  console.log("Gallery Data:", galleryData);
+
   const images = galleryData?.reduce(
     (acc, image) => {
       const imageMap = {
@@ -11,8 +14,10 @@ const GallerySection = ({ galleryData, className = "" }) => {
         3: "middleBottomImage",
         4: "rightImage",
       };
-      if (imageMap[image.id]) {
-        acc[imageMap[image.id]] = image.image;
+      // Use modulo 4 to cycle through positions if more than 4 images
+      const positionId = ((image.id - 1) % 4) + 1;
+      if (imageMap[positionId]) {
+        acc[imageMap[positionId]] = image.image;
       }
       return acc;
     },
@@ -24,6 +29,10 @@ const GallerySection = ({ galleryData, className = "" }) => {
     }
   ) || {};
 
+  // Debug log to check mapped images
+  console.log("Mapped Images:", images);
+
+  // Check if any image is present to avoid empty render
   if (
     !images.leftImage &&
     !images.middleTopImage &&
@@ -34,9 +43,7 @@ const GallerySection = ({ galleryData, className = "" }) => {
   }
 
   return (
-    <section
-      className={`slider-container ${className}`}
-    >
+    <section className={`slider-container ${className}`}>
       <div
         className="grid grid-cols-1 md:grid-cols-3 gap-4"
         role="region"

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import DOMPurify from "dompurify";
-import MainButton from "../../../components/Button/MainButton";
 
 const OtherStays = ({ sectionData, className = "" }) => {
   if (!sectionData || (!sectionData.images && !sectionData.content)) {

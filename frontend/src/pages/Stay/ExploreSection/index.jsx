@@ -23,9 +23,9 @@ const ExploreSection = ({ exploreData }) => {
         <div className="pt-2">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex mx-auto items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-medium w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-[#2b6843] hover:text-white transition-all duration-300"
+            className="flex mx-auto items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-medium w-44 xl:w-44 h-10 xl:h-12 rounded-full hover:bg-[#2b6843] hover:text-white transition-all duration-300"
           >
-            Book Now
+            Check Availability
           </button>
         </div>
       </div>

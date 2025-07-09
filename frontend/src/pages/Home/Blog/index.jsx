@@ -54,9 +54,9 @@ const Blog = ({ className = "" }) => {
 
   const settings = {
     dots: false,
-    infinite: blogItems.length > (blogItems.length === 2 ? 2 : 3), 
+    infinite: blogItems.length > (blogItems.length === 2 ? 2 : 3),
     speed: 500,
-    slidesToShow: blogItems.length >= 3 ? 3 : blogItems.length, 
+    slidesToShow: blogItems.length >= 3 ? 3 : blogItems.length,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -118,17 +118,10 @@ const Blog = ({ className = "" }) => {
       <div>
         <div className="flex flex-col md:flex-row gap-0 md:gap-16 items-start mb-12">
           <div className="md:w-1/2">
-            {title && (
-              <div
-                id="blog-title"
-                dangerouslySetInnerHTML={{ __html: title }}
-              />
-            )}
+            {title && <h2 id="blog-title"><StripHtml html={title} /></h2>}
           </div>
           <div className="md:w-1/2 flex flex-col gap-6">
-            {description && (
-              <div dangerouslySetInnerHTML={{ __html: description }} />
-            )}
+            {description && <p><StripHtml html={description} /></p>}
             <MainButton
               label="More Info"
               onClick={() => (window.location.href = "/blogs")}
@@ -157,18 +150,16 @@ const Blog = ({ className = "" }) => {
                           }}
                         />
                       </div>
-                      <div
-                        className="mb-2 line-clamp-2"
-                        dangerouslySetInnerHTML={{
-                          __html: item.title || "Unknown Title",
-                        }}
-                      />
-                      <div
-                        className="text-gray-500 text-sm font-medium mt-2"
-                        dangerouslySetInnerHTML={{
-                          __html: item.date || "No content available.",
-                        }}
-                      />
+                      <h5
+                        className="text-black mb-2 line-clamp-2 text-lg font-semibold"
+                      >
+                        <StripHtml html={item.title || "Unknown Title"} />
+                      </h5>
+                      <p
+                        className="mb-2 text-black line-clamp-3"
+                      >
+                        <StripHtml html={item.description || "No description available."} />
+                      </p>
                     </Link>
                   </div>
                 ))}

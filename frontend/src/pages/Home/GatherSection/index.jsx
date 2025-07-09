@@ -71,7 +71,7 @@ const GatherSection = ({ className = "" }) => {
     return (
         <section className={`container-primary mx-auto ${className}`} aria-labelledby="gather-section-title">
             <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/3 md:mt-0 md:pl-12 flex flex-col justify-start">
+                <div className="md:w-1/3 md:mt-0 md:pl-12 flex flex-col justify-start mr-0 md:mr-10">
                     {content && content.title && (
                         <div
                             id="gather-section-title"

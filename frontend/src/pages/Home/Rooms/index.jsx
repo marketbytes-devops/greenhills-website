@@ -4,8 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fetchRooms, fetchRoomsTitle } from "../../../helpers/apiService";
 import StripHtml from "../../../components/stripHTML";
 import { Link } from "react-router-dom";
+import { useModal } from "../../../context/ModalProvider";
 
 const Rooms = () => {
+  const { setIsModalOpen } = useModal();
   const [roomCards, setRoomCards] = useState([]);
   const [titleData, setTitleData] = useState(null);
   const [error, setError] = useState(null);
@@ -46,19 +48,18 @@ const Rooms = () => {
             )}
           </div>
         )}
-        <Link
-          to={titleData.link}
-          className="flex group items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-normal w-32 xl:w-36 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-normal w-44 xl:w-44 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
         >
-          See More
-        </Link>
+          Check Availability
+        </button>
       </div>
 
       <div className="space-y-8 md:space-y-16 mt-8 lg:mt-10">
         {roomCards.map((card) => (
-          <Link
-            to={card.link}
-            className="group w-full flex flex-col md:flex-row card gap-4 md:gap-6 h-auto md:h-[300px]"
+          <div
+            className="w-full flex flex-col md:flex-row card gap-4 md:gap-6 h-auto md:h-[300px]"
             key={card.id}
           >
             <div className="w-full md:w-1/2">
@@ -88,14 +89,14 @@ const Rooms = () => {
                   __html: card.description || "No Description",
                 }}
               />
-              <button className="group">
+              <Link to={card.link} className="group">
                 <FontAwesomeIcon
                   icon={faArrowRight}
-                  className="-rotate-45 group-hover:rotate-0 transition-all duration-300 text-gray-500 text-xl md:text-2xl"
+                  className="mt-8 -rotate-45 group-hover:rotate-0 transition-all duration-300 text-gray-500 text-xl md:text-2xl"
                 />
-              </button>
+              </Link>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </>

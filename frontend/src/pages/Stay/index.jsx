@@ -65,14 +65,28 @@ const Stay = () => {
             ? amenitiesListingsResponse.data.sort((a, b) => (a.order || 0) - (b.order || 0))
             : [];
           const explore = exploreResponse.data.length > 0 ? exploreResponse.data[0] : null;
-          const gallery = Array.isArray(galleryResponse.data) ? galleryResponse.data : [];
+
+          // Map slug to stay_page_create id
+          const stayPages = [
+            { id: 1, link: "deluxe-double-bedroom" },
+            { id: 2, link: "super-deluxe-room" },
+            { id: 3, link: "standard-double-room" },
+          ];
+          const currentStayId = stayPages.find((page) => page.link === slug)?.id || null;
+
+          // Filter gallery data by current stay_page_create
+          const gallery = Array.isArray(galleryResponse.data)
+            ? galleryResponse.data.filter((item) => item.stay_page_create === currentStayId)
+            : [];
+          const gallerySectionDataFiltered = gallery.length > 0 ? gallery : [];
+
           const roomsTitle =
             Array.isArray(roomsTitleResponse.data) && roomsTitleResponse.data[0]
               ? roomsTitleResponse.data[0]
               : null;
           const roomsListings = Array.isArray(roomsListingsResponse.data)
             ? roomsListingsResponse.data
-                .filter((item) => item.link !== slug) 
+                .filter((item) => item.link !== slug)
                 .slice(0, 2)
             : [];
 
@@ -105,7 +119,7 @@ const Stay = () => {
           });
           setAmenitiesListingsData(amenitiesListings);
           setExploreSectionData(explore);
-          setGallerySectionData(gallery);
+          setGallerySectionData(gallerySectionDataFiltered); // Use filtered gallery data
           setOtherStaysData({
             images: images.length ? images : null,
             content,
@@ -134,6 +148,7 @@ const Stay = () => {
         image={bannerData.image}
         title={bannerData.title}
         description={bannerData.description}
+        isButton={false} 
       />
       <section>
         <HighlightSection highlights={highlightsData} />
