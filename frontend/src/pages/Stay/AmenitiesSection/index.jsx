@@ -48,13 +48,13 @@ const AmenitiesSection = ({ sectionData, cardsData }) => {
         <div className="text-center max-w-4xl mx-auto">
           {sectionData.title && (
             <div
-              className="pb-10 space-y-6"
+              className="pb-10 space-y-6 px-4 sm:px-4"
               dangerouslySetInnerHTML={{ __html: sectionData.title }}
             />
           )}
           {sectionData.description && (
             <div
-              className="pb-10"
+              className="pb-10 px-4 sm:px-4"
               dangerouslySetInnerHTML={{ __html: sectionData.description }}
             />
           )}

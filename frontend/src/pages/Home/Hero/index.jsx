@@ -43,10 +43,12 @@ const Hero = () => {
               className="w-full h-[500px] lg:h-screen"
             >
               <div
-                className="w-full h-full bg-cover bg-center bg-no-repeat"
+                className="w-full h-full"
                 style={{
-                  backgroundImage: `url(${item.image})`,
-                  backgroundColor: "rgba(0, 0, 0, 0.1)",
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url(${item.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
                 }}
               >
                 <div className="flex items-center justify-center h-full bg-secondaryBlack bg-opacity-30">

@@ -87,7 +87,7 @@ const Eat = () => {
       />
       {eatPages.length > 0 && (
         <div className="container-secondary mx-auto my-8 sm:my-8 lg:my-16">
-          <ul className="flex flex-wrap justify-center items-center space-x-4 sm:space-x-6 space-y-6 md:space-y-0">
+          <ul className="flex flex-wrap justify-center items-center space-x-4 sm:space-x-6 md:space-y-0">
             {eatPages.map((page) => (
               <li key={page.id}>
                 <NavLink
