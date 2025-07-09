@@ -12,6 +12,8 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
   const [editingId, setEditingId] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fieldOptions, setFieldOptions] = useState({});
+  // Add state for search query
+  const [searchQuery, setSearchQuery] = useState("");
 
   const quillModules = {
     toolbar: [
@@ -232,6 +234,21 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
     setFormEntries((prev) => prev.filter((entry) => entry.id !== entryId));
   };
 
+  // Filter items based on search query
+  const filteredItems = items.filter((item) =>
+    fields.some((field) => {
+      if (field.type === "file") return false; // Skip file fields
+      const value = item[field.name];
+      if (!value) return false;
+      const searchString = field.type === "select" 
+        ? (fieldOptions[field.name]?.[value] || value)?.toString().toLowerCase()
+        : field.type === "textEditor"
+        ? value.replace(/<[^>]+>/g, '').toLowerCase() // Strip HTML tags for textEditor
+        : value.toString().toLowerCase();
+      return searchString.includes(searchQuery.toLowerCase());
+    })
+  );
+
   const ShowCard = ({ item, index, fields }) => (
     <Draggable draggableId={item.id.toString()} index={index}>
       {(provided) => (
@@ -306,6 +323,17 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
   return (
     <div className="mx-auto">
       <h2 className="text-lg font-medium mb-6 text-gray-800">{title}</h2>
+      {/* Add search input */}
+      <div className="mb-6">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search items..."
+          className="w-full text-sm p-2 border border-gray-800 focus:outline-indigo-500 focus:ring focus:ring-indigo-500 opacity-80"
+          aria-label="Search items"
+        />
+      </div>
       <form onSubmit={handleSubmit} className="mb-6">
         {formEntries.map((entry, entryIndex) => (
           <div key={entry.id} className="mb-4 p-4 bg-gray-100 shadow">
@@ -432,13 +460,13 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
               role="list"
               aria-label="Content list"
             >
-              {Array.isArray(items) && items.length > 0 ? (
-                items.map((item, index) => (
+              {Array.isArray(filteredItems) && filteredItems.length > 0 ? (
+                filteredItems.map((item, index) => (
                   <ShowCard key={item.id} item={item} index={index} fields={fields} />
                 ))
               ) : (
                 <p className="text-gray-500 text-sm w-full text-center py-4">
-                  No items to display
+                  {searchQuery ? "No items match your search" : "No items to display"}
                 </p>
               )}
               {provided.placeholder}
