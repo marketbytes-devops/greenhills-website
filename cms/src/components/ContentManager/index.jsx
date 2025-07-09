@@ -13,8 +13,6 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [fieldOptions, setFieldOptions] = useState({});
 
-  const [searchQuery, setSearchQuery] = useState("");
-
   const quillModules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -234,102 +232,75 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
     setFormEntries((prev) => prev.filter((entry) => entry.id !== entryId));
   };
 
-  const filteredItems = items.filter((item) =>
-    fields.some((field) => {
-      if (field.type === "file") return false;
-      const value = item[field.name];
-      if (!value) return false;
-      const searchString = field.type === "select"
-        ? (fieldOptions[field.name]?.[value] || value)?.toString().toLowerCase()
-        : field.type === "textEditor"
-          ? value.replace(/<[^>]+>/g, '').toLowerCase()
-          : value.toString().toLowerCase();
-      return searchString.includes(searchQuery.toLowerCase());
-    })
-  );
-
   const ShowCard = ({ item, index, fields }) => (
-    <>
-      {/* Add search input */}
-      <div className="mb-6">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search items..."
-          className="w-full text-sm p-2 border border-gray-800 focus:outline-indigo-500 focus:ring focus:ring-indigo-500 opacity-80"
-          aria-label="Search items"
-        />
-      </div>
-      <Draggable draggableId={item.id.toString()} index={index}>
-        {(provided) => (
-          <div
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2"
-          >
-            <div className="bg-white shadow-md p-4 hover:shadow-lg transition-shadow duration-200">
-              <div className="flex flex-col">
-                {item.image && (
-                  <img
-                    src={item.image}
-                    alt="Content"
-                    className="w-full h-40 object-cover mb-3 brightness-80"
-                  />
-                )}
-                <div>
-                  <p className="text-sm text-gray-500">ID: {item.id}</p>
-                  {fields
-                    .filter((field) => field.name !== "image")
-                    .map((field) => (
-                      <div key={field.name} className="mb-2">
-                        <p className="text-sm font-medium text-gray-700">{field.label}:</p>
-                        {field.type === "select" ? (
-                          <p className="text-gray-600 text-sm">
-                            {fieldOptions[field.name]?.[item[field.name]] ||
-                              item[`${field.name}_label`] ||
-                              `No ${field.label.toLowerCase()}`}
-                          </p>
-                        ) : field.type === "textEditor" ? (
-                          <div
-                            className="text-gray-600 text-sm line-clamp-2"
-                            dangerouslySetInnerHTML={{
-                              __html: item[field.name] || `No ${field.label.toLowerCase()}`,
-                            }}
-                          />
-                        ) : (
-                          <p className="text-gray-600 text-sm">
-                            {item[field.name] || `No ${field.label.toLowerCase()}`}
-                          </p>
-                        )}
-                      </div>
-                    ))}
-                </div>
-                <div className="flex justify-end mt-3">
-                  <button
-                    onClick={() => handleEdit(item)}
-                    className="p-2 flex items-center justify-center space-x-2 text-blue-500 hover:text-blue-600 focus:outline-none"
-                    aria-label={`Edit item ${item.id}`}
-                  >
-                    <FilePenLine size={18} />
-                    <span>Edit</span>
-                  </button>
-                  <button
-                    onClick={() => handleDelete(item.id)}
-                    className="p-2 flex items-center justify-center space-x-2 text-red-500 hover:text-red-600 focus:outline-none"
-                    aria-label={`Delete item ${item.id}`}
-                  >
-                    <Trash size={18} />
-                    <span>Delete</span>
-                  </button>
-                </div>
+    <Draggable draggableId={item.id.toString()} index={index}>
+      {(provided) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2"
+        >
+          <div className="bg-white shadow-md p-4 hover:shadow-lg transition-shadow duration-200">
+            <div className="flex flex-col">
+              {item.image && (
+                <img
+                  src={item.image}
+                  alt="Content"
+                  className="w-full h-40 object-cover mb-3 brightness-80"
+                />
+              )}
+              <div>
+                <p className="text-sm text-gray-500">ID: {item.id}</p>
+                {fields
+                  .filter((field) => field.name !== "image")
+                  .map((field) => (
+                    <div key={field.name} className="mb-2">
+                      <p className="text-sm font-medium text-gray-700">{field.label}:</p>
+                      {field.type === "select" ? (
+                        <p className="text-gray-600 text-sm">
+                          {fieldOptions[field.name]?.[item[field.name]] ||
+                            item[`${field.name}_label`] ||
+                            `No ${field.label.toLowerCase()}`}
+                        </p>
+                      ) : field.type === "textEditor" ? (
+                        <div
+                          className="text-gray-600 text-sm line-clamp-2"
+                          dangerouslySetInnerHTML={{
+                            __html: item[field.name] || `No ${field.label.toLowerCase()}`,
+                          }}
+                        />
+                      ) : (
+                        <p className="text-gray-600 text-sm">
+                          {item[field.name] || `No ${field.label.toLowerCase()}`}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+              </div>
+              <div className="flex justify-end mt-3">
+                <button
+                  onClick={() => handleEdit(item)}
+                  className="p-2 flex items-center justify-center space-x-2 text-blue-500 hover:text-blue-600 focus:outline-none"
+                  aria-label={`Edit item ${item.id}`}
+                >
+                  <FilePenLine size={18} />
+                  <span>Edit</span>
+                </button>
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  className="p-2 flex items-center justify-center space-x-2 text-red-500 hover:text-red-600 focus:outline-none"
+                  aria-label={`Delete item ${item.id}`}
+                >
+                  <Trash size={18} />
+                  <span>Delete</span>
+                </button>
               </div>
             </div>
           </div>
-        )}
-      </Draggable>
-    </>
+        </div>
+      )}
+    </Draggable>
   );
 
   return (
@@ -461,13 +432,13 @@ const ContentManager = ({ apiBaseUrl, fields, title, singleEntry = false }) => {
               role="list"
               aria-label="Content list"
             >
-              {Array.isArray(filteredItems) && filteredItems.length > 0 ? (
-                filteredItems.map((item, index) => (
+              {Array.isArray(items) && items.length > 0 ? (
+                items.map((item, index) => (
                   <ShowCard key={item.id} item={item} index={index} fields={fields} />
                 ))
               ) : (
                 <p className="text-gray-500 text-sm w-full text-center py-4">
-                  {searchQuery ? "No items match your search" : "No items to display"}
+                  No items to display
                 </p>
               )}
               {provided.placeholder}
