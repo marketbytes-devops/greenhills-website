@@ -144,7 +144,7 @@ const Gather = () => {
       <div className="container-secondary mx-auto my-8 sm:my-8 lg:my-16 w-full h-auto flex flex-col items-center justify-center">
         <div
           dangerouslySetInnerHTML={{ __html: bannerData.description }}
-          className="text-center"
+          className="text-center md:text-left"
         />
       </div>
       <section className="mx-auto mt-8 sm:mt-8 lg:mt-16">
