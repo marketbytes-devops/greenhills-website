@@ -27,7 +27,7 @@ const ContentSection = () => {
         <ContentManager
             apiBaseUrl="/home/home-gather-section-content/"
             fields={contentFields}
-            title="Home Gather Content Section Management"
+            title="Home Gather Section Listing Management"
             singleEntry
         />
     );

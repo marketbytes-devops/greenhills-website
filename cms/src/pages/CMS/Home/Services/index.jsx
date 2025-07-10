@@ -28,7 +28,7 @@ const Services = () => {
     <ContentManager
       apiBaseUrl="/home/home-services/"
       fields={contentFields}
-      title="Home Services Management"
+      title="Home Amenities Section Management"
     />
   );
 };

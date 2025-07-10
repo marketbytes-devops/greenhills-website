@@ -1,5 +1,4 @@
 import ContentManager from "../../../../components/ContentManager";
-import BlogContent from "./BlogContent";
 
 const BlogTitle = () => {
     const contentFields = [
@@ -23,10 +22,9 @@ const BlogTitle = () => {
             <ContentManager
                 apiBaseUrl="/home/home-blog-title/"
                 fields={contentFields}
-                title="Home Blog Section Title Management"
+                title="Home Blog Highlights Section Title Management"
                 singleEntry
             />
-            <BlogContent />
         </div>
     );
 };

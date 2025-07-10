@@ -48,7 +48,7 @@ const Rooms = () => {
         <ContentManager
             apiBaseUrl="/home/home-rooms/"
             fields={contentFields}
-            title="Home Rooms Management"
+            title="Home Stay Listing Management"
         />
     );
 };

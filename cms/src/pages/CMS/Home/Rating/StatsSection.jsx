@@ -30,7 +30,7 @@ const StatsSection = () => {
     <ContentManager
       apiBaseUrl="/home/home-stats/"
       fields={contentFields}
-      title="Home Stats Management"
+      title="Home Stand Out Section Rating Management"
     />
   );
 };

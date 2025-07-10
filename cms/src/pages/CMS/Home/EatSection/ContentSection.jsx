@@ -27,7 +27,7 @@ const ContentSection = () => {
         <ContentManager
             apiBaseUrl="/home/home-eat-section-content/"
             fields={contentFields}
-            title="Home Eat Content Section Management"
+            title="Home Eat Section Listing Management"
             singleEntry
         />
     );

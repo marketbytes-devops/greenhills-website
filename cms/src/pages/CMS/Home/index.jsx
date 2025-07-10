@@ -15,15 +15,15 @@ const Home = () => {
 
   const tabs = [
     { id: 'home-banner', label: 'Header', content: <Hero /> },
-    { id: 'home-services', label: 'Amenities', content: <Services /> },
-    { id: 'home-about-section', label: 'About Section', content: <TitleSection /> },
-    { id: 'home-rating', label: 'Rating', content: <RatingSection /> },
-    { id: 'home-rooms', label: 'Rooms Section', content: <Title /> },
-    { id: 'home-explore', label: 'Explore Section', content: <ExploreSection /> },
-    { id: 'home-eat-section', label: 'Eat Section', content: <EatListing /> },
-    { id: 'home-gather-section', label: 'Gather Section', content: <GatherListing /> },
-    { id: 'home-team-section', label: 'Team Section', content: <TeamTitle /> },
-    { id: 'home-blog-section', label: 'Blog Section', content: <BlogTitle /> },
+    { id: 'home-services', label: 'Amenities Section', content: <Services /> },
+    { id: 'home-about-section', label: 'Gallery Section', content: <TitleSection /> },
+    { id: 'home-rating', label: 'Stands Out Section', content: <RatingSection /> },
+    { id: 'home-rooms', label: 'Stay Listing Section', content: <Title /> },
+    { id: 'home-explore', label: 'Highlights Section', content: <ExploreSection /> },
+    { id: 'home-eat-section', label: 'Eat Listing Section', content: <EatListing /> },
+    { id: 'home-gather-section', label: 'Gather Listing Section', content: <GatherListing /> },
+    { id: 'home-team-section', label: 'Testimonial Section', content: <TeamTitle /> },
+    { id: 'home-blog-section', label: 'Blog Highlights Title Section', content: <BlogTitle /> },
   ];
 
   return (

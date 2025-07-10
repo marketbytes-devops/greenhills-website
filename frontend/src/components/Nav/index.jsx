@@ -129,23 +129,20 @@ const Nav = () => {
     if (linkName === 'Gather') setGatherOpen(!gatherOpen);
   };
 
-  const navBgClass = isHomePage && !isScrolled ? 'bg-white md:bg-transparent' : 'bg-white shadow-md';
-  const linkColorClass = isHomePage && !isScrolled ? 'text-white' : 'text-black';
+  const navBgClass = 'bg-white shadow-md';
+  const linkColorClass = 'text-black';
   const hoverColorClass = 'hover:text-[#2b6843]';
-  const mobileIconColorClass = isHomePage && !isScrolled ? 'text-black md:text-white' : 'text-black';
-  const buttonBorderClass = isHomePage && !isScrolled ? 'border-white md:border-white' : 'border-black';
+  const mobileIconColorClass = 'text-black';
+  const buttonBorderClass = 'border-black';
   const buttonHoverBgClass = 'hover:bg-[#2b6843] hover:text-white hover:border-[#2b6853]';
 
   return (
     <>
       <nav className={`z-50 fixed top-0 w-full transition-all duration-100 ${navBgClass}`}>
         <div className="container-secondary mx-auto flex items-center justify-between py-2">
-          {/* Left Section: Logo */}
           <NavLink to="/" end>
             <img src={logo} alt="Logo" className="w-auto h-auto" />
           </NavLink>
-
-          {/* Middle Section: Navigation Links */}
           <ul className="hidden lg:flex flex-grow justify-center space-x-6 xl:space-x-10 items-center">
             {navLinks.map((link) => (
               <li
@@ -169,10 +166,10 @@ const Nav = () => {
                         color: location.pathname.startsWith(link.basePath)
                           ? '#2b6843'
                           : linkColorClass === 'text-white'
-                          ? 'white'
-                          : 'black',
+                            ? 'white'
+                            : 'black',
                       }}
-                      className={`flex items-center space-x-2 text-sm font-normal ${hoverColorClass}`}
+                      className={`flex items-center space-x-2 text-sm font-normal hover:font-medium ${hoverColorClass}`}
                       onClick={() => toggleDropdown(link.name)}
                     >
                       <span>{link.name}</span>
@@ -180,8 +177,8 @@ const Nav = () => {
                         variants={caretVariants}
                         animate={
                           (link.name === 'Stay' && stayOpen) ||
-                          (link.name === 'Eat' && eatOpen) ||
-                          (link.name === 'Gather' && gatherOpen)
+                            (link.name === 'Eat' && eatOpen) ||
+                            (link.name === 'Gather' && gatherOpen)
                             ? 'open'
                             : 'closed'
                         }
@@ -191,8 +188,8 @@ const Nav = () => {
                     </button>
                     <AnimatePresence>
                       {(link.name === 'Stay' && stayOpen) ||
-                      (link.name === 'Eat' && eatOpen) ||
-                      (link.name === 'Gather' && gatherOpen) ? (
+                        (link.name === 'Eat' && eatOpen) ||
+                        (link.name === 'Gather' && gatherOpen) ? (
                         <motion.ul
                           className="absolute bg-[#2b6843] shadow-lg rounded-md mt-1 w-60 z-10"
                           variants={dropdownVariants}
@@ -208,9 +205,8 @@ const Nav = () => {
                                   backgroundColor: isActive ? '#1a3c2b' : 'transparent',
                                   color: 'white',
                                 })}
-                                className={`block px-4 py-2 text-sm hover:bg-[#1a3c2b] ${
-                                  index === 0 ? 'rounded-t-md' : ''
-                                } ${index === link.dropdown.length - 1 ? 'rounded-b-md' : ''}`}
+                                className={`block px-4 py-2 text-sm hover:bg-[#1a3c2b] ${index === 0 ? 'rounded-t-md' : ''
+                                  } ${index === link.dropdown.length - 1 ? 'rounded-b-md' : ''}`}
                                 end
                               >
                                 {item.name}
@@ -229,10 +225,10 @@ const Nav = () => {
                         isActive || (link.hasChildRoutes && location.pathname.startsWith(link.basePath))
                           ? '#2b6843'
                           : linkColorClass === 'text-white'
-                          ? 'white'
-                          : 'black',
+                            ? 'white'
+                            : 'black',
                     })}
-                    className={`text-sm font-normal ${hoverColorClass}`}
+                    className={`text-sm font-normal hover:font-medium ${hoverColorClass}`}
                     end
                   >
                     {link.name}
@@ -241,10 +237,8 @@ const Nav = () => {
               </li>
             ))}
           </ul>
-
-          {/* Right Section: Book Now Button and Mobile Menu Toggle */}
           <div className="flex items-center space-x-4">
-             <button
+            <button
               onClick={() => setIsModalOpen(true)}
               className={`hidden lg:flex group items-center justify-center space-x-2 bg-transparent border ${buttonBorderClass} ${buttonHoverBgClass} text-md ${linkColorClass} font-normal w-32 xl:w-36 h-12 xl:h-12 rounded-full transition-all duration-300`}
             >
@@ -281,11 +275,10 @@ const Nav = () => {
                     {link.dropdown ? (
                       <>
                         <button
-                          className={`flex items-center justify-between w-full text-sm ${
-                            location.pathname.startsWith(link.basePath)
+                          className={`flex items-center justify-between w-full text-sm ${location.pathname.startsWith(link.basePath)
                               ? 'text-[#2b6843]'
                               : 'text-black'
-                          } ${hoverColorClass} font-normal py-2`}
+                            } ${hoverColorClass} font-normal py-2`}
                           onClick={() => toggleDropdown(link.name)}
                         >
                           <span>{link.name}</span>
@@ -293,8 +286,8 @@ const Nav = () => {
                             variants={caretVariants}
                             animate={
                               (link.name === 'Stay' && stayOpen) ||
-                              (link.name === 'Eat' && eatOpen) ||
-                              (link.name === 'Gather' && gatherOpen)
+                                (link.name === 'Eat' && eatOpen) ||
+                                (link.name === 'Gather' && gatherOpen)
                                 ? 'open'
                                 : 'closed'
                             }
@@ -304,8 +297,8 @@ const Nav = () => {
                         </button>
                         <AnimatePresence>
                           {(link.name === 'Stay' && stayOpen) ||
-                          (link.name === 'Eat' && eatOpen) ||
-                          (link.name === 'Gather' && gatherOpen) ? (
+                            (link.name === 'Eat' && eatOpen) ||
+                            (link.name === 'Gather' && gatherOpen) ? (
                             <motion.ul
                               className="pl-4 space-y-2"
                               variants={dropdownVariants}

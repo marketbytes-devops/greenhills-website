@@ -15,7 +15,7 @@ const MainSection = () => {
     <ContentManager
       apiBaseUrl="/home/home-about-section-image/"
       fields={contentFields}
-      title="Home About Section Image Management"
+      title="Home Gallery Section Image Management"
     />
   );
 };

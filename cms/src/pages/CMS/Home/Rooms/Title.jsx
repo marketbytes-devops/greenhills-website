@@ -29,7 +29,7 @@ const Title = () => {
             <ContentManager
                 apiBaseUrl="/home/home-rooms-title/"
                 fields={contentFields}
-                title="Home Rooms Title Management"
+                title="Home Stay Listing Title Management"
                 singleEntry
             />
             <Rooms />

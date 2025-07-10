@@ -36,7 +36,7 @@ const GatherListing = () => {
             <ContentManager
                 apiBaseUrl="/home/home-gather-section-listing/"
                 fields={contentFields}
-                title="Home Gather Section Management"
+                title="Home Gather Section Title Management"
             />
             <ContentSection />
         </div>

@@ -16,7 +16,7 @@ const TeamTitle = () => {
             <ContentManager
                 apiBaseUrl="/home/home-team-title/"
                 fields={contentFields}
-                title="Home Team Title Section Management"
+                title="Home Testimonial Section Title Management"
                 singleEntry
             />
             <TeamSection />

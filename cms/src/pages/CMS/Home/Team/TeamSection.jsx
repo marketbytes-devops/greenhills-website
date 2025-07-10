@@ -17,7 +17,7 @@ const TeamSection = () => {
     },
     {
       name: 'role',
-      label: 'Role',
+      label: 'Place',
       type: 'textEditor',
       placeholder: 'Enter the role',
     },
@@ -40,7 +40,7 @@ const TeamSection = () => {
     <ContentManager
       apiBaseUrl="/home/home-team-section/"
       fields={contentFields}
-      name="Home Team Section Management"
+      name="Home Testimonials Section Listing Management"
     />
   );
 };
