@@ -25,7 +25,7 @@ const ExploreSection = () => {
   return (
     <>
       <div
-        className="w-full h-[450px] md:h-[550px] bg-gradient-to-r from-white/80 to-black/50 relative flex items-center"
+        className="w-full h-auto md:h-[550px] py-8 bg-gradient-to-r from-white/80 to-black/50 relative flex items-center"
         style={{
           backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url(${data.image})`,
           backgroundPosition: "center",

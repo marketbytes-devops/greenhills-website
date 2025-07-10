@@ -32,7 +32,7 @@ const SectionTwo = () => {
         return (
           <div
             key={card.id}
-            className={`w-full h-[550px] flex flex-col ${flexDirection} items-center`}
+            className={`w-full h-auto sm:h-[550px] flex flex-col ${flexDirection} items-center`}
           >
             <div className="w-full md:w-1/2 h-full">
               <img
@@ -42,7 +42,7 @@ const SectionTwo = () => {
               />
             </div>
             <div
-              className={`w-full px-4 md:px-16 py-4 md:py-16 md:w-1/2 h-[550px] ${bgColor} ${textColor} flex flex-col justify-center p-8`}
+              className={`w-full px-4 md:px-16 py-6 md:py-16 md:w-1/2 h-full ${bgColor} ${textColor} flex flex-col justify-center p-8`}
             >
               <div dangerouslySetInnerHTML={{ __html: card.title }} />
               <div dangerouslySetInnerHTML={{ __html: card.description }} />
