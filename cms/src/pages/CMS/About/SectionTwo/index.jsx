@@ -27,7 +27,7 @@ const SectionTwo = () => {
     <ContentManager
       apiBaseUrl="/about/about-section-two/"
       fields={contentFields}
-      title="About Us Highlight Section Management"
+      title="About Highlight Section Management"
     />
   );
 };

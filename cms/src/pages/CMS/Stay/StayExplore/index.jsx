@@ -39,12 +39,12 @@ const StayExplore = () => {
       type: 'textEditor',
       placeholder: 'Enter the title',
     },
-    {
-      name: 'link',
-      label: 'Explore Link',
-      type: 'text',
-      placeholder: 'Enter the link',
-    }
+    // {
+    //   name: 'link',
+    //   label: 'Explore Link',
+    //   type: 'text',
+    //   placeholder: 'Enter the link',
+    // }
   ];
 
   return (

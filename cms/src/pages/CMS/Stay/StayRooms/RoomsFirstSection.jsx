@@ -15,12 +15,12 @@ const FirstSection = () => {
       type: 'textEditor',
       placeholder: 'Enter the description',
     },
-    {
-      name: 'link',
-      label: 'Link',
-      type: 'text',
-      placeholder: 'Enter the link',
-    }
+    // {
+    //   name: 'link',
+    //   label: 'Link',
+    //   type: 'text',
+    //   placeholder: 'Enter the link',
+    // }
   ];
 
   return (

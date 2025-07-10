@@ -11,13 +11,13 @@ const Stay = () => {
   const [activeTab, setActiveTab] = useState('stay-banner');
 
   const tabs = [
-    { id: 'stay-rooms', label: 'Stay Rooms Listings', content: <RoomsFirstSection /> },
     { id: 'stay-create-page', label: 'Create Detailed Page', content: <CreatePage /> },
     { id: 'stay-banner', label: 'Detailed Page Header Section', content: <Hero /> },
-    { id: 'stay-highlights', label: 'Detailed Page Highlights Section', content: <StayHighlights /> },
+    { id: 'stay-highlights', label: 'Detailed Page Features & Pricing Section', content: <StayHighlights /> },
     { id: 'stay-amenities', label: 'Detailed Page Amenities Section', content: <AmenitiesFirstSection /> },
     { id: 'stay-explore', label: 'Detailed Page Explore Section', content: <StayExplore /> },
     { id: 'stay-gallery', label: 'Detailed Page Gallery Section', content: <StayGallery /> },
+    { id: 'stay-rooms', label: 'Stay Rooms Listings', content: <RoomsFirstSection /> },
   ];
 
   return (

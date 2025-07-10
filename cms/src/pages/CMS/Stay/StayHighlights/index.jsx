@@ -76,7 +76,7 @@ const StayHighlights = () => {
     <ContentManager
       apiBaseUrl="/stay/stay-highlights/"
       fields={contentFields}
-      title="Stay Detail Page Highlights Management"
+      title="Stay Detail Page Features & Pricing Section Management"
       singleEntry={false}
     />
   );
