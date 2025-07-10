@@ -9,7 +9,7 @@ const ExploreSection = ({ exploreData }) => {
 
   return (
     <section
-      className="w-full h-[450px] md:h-[550px] relative flex items-center"
+      className="w-full h-auto md:h-[550px] py-8 relative flex items-center"
       style={{
         backgroundImage: `
           linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
