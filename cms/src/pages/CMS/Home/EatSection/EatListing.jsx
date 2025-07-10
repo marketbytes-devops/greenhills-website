@@ -36,7 +36,7 @@ const EatListing = () => {
             <ContentManager
                 apiBaseUrl="/home/home-eat-section-listing/"
                 fields={contentFields}
-                title="Home Eat Section Management"
+                title="Home Eat Section Title Management"
             />
             <ContentSection />
         </div>

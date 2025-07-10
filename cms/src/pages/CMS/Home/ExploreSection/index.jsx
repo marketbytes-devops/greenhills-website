@@ -28,7 +28,7 @@ const ExploreSection = () => {
     <ContentManager
       apiBaseUrl="/home/home-explore/"
       fields={contentFields}
-      title="Home Explore Section Management"
+      title="Home Highlights Section Management"
     />
   );
 };

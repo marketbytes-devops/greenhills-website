@@ -11,10 +11,10 @@ const About = () => {
   const [activeTab, setActiveTab] = useState('about-banner');
 
   const tabs = [
-    { id: 'about-banner', label: 'Header', content: <Hero /> },
-    { id: 'about-section-two', label: 'About Section Two', content: <SectionTwo /> },
-    { id: 'about-section-three', label: 'About Section Three', content: <FirstSection /> },
-    { id: 'about-section-four', label: 'About Section Four', content: <SectionFour /> },
+    { id: 'about-banner', label: 'Header ', content: <Hero /> },
+    { id: 'about-section-two', label: 'Highlights Section', content: <SectionTwo /> },
+    { id: 'about-section-three', label: 'Amenities Section', content: <FirstSection /> },
+    { id: 'about-section-four', label: 'Second Highlight Section', content: <SectionFour /> },
     { id: 'about-section-explore', label: 'About Section Five', content: <TitleSection /> },
     { id: 'about-section-five', label: 'About Section Six', content: <SectionFive /> },
   ];
