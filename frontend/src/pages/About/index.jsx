@@ -14,7 +14,7 @@ const About = () => {
       <section className="mx-auto my-8 sm:my-8 lg:my-16">
         <SectionTwo />
       </section>
-      <section>
+      <section className="-mt-8 -mb-2 sm:-mt-4 sm:-mb-0">
         <Services/>
       </section>
       <section className="mx-auto my-8 sm:my-8 lg:my-16">
