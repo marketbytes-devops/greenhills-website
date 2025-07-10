@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import {
   fetchTeamSection,
@@ -10,6 +10,7 @@ const Team = () => {
   const [titleData, setTitleData] = useState("");
   const [teamMembers, setTeamMembers] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     Promise.all([fetchTeamSectionTitle(), fetchTeamSection()])
@@ -40,7 +41,7 @@ const Team = () => {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     centerMode: true,
-    centerPadding: "0px",
+    centerPadding: "20px",
     beforeChange: (current, next) => setCurrentSlide(next),
     responsive: [
       {
@@ -49,7 +50,7 @@ const Team = () => {
           slidesToShow: teamMembers.length === 2 ? 2 : 2,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "0px",
+          centerPadding: "20px",
         },
       },
       {
@@ -58,28 +59,33 @@ const Team = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "0px",
+          centerPadding: "20px",
         },
       },
     ],
   };
 
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    sliderRef.current.slickGoTo(index);
+  };
+
   return (
-    <div className="container mx-auto px-4">
-      <div className="text-center">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-0">
+      <div className="text-center mb-6 sm:mb-8">
         <div
-          className="pb-10 text-4xl font-bold"
+          className="pb-0 md:pb-2 text-2xl sm:text-3xl md:text-4xl font-bold"
           dangerouslySetInnerHTML={{ __html: titleData }}
         />
       </div>
       <div className="pb-16">
         {teamMembers.length > 0 ? (
           <div className="flex items-center">
-            <Slider {...settings} className="w-full">
+            <Slider {...settings} ref={sliderRef} className="w-full">
               {teamMembers.map((member, index) => (
-                <div key={member.id || index} className="p-4">
-                  <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-                    <div className="w-32 h-32 rounded-full overflow-hidden mb-4">
+                <div key={member.id || index} className="p-2 sm:p-4">
+                  <div className="bg-white rounded-lg shadow-md hover:shadow-lg p-4 sm:p-6 flex flex-col items-center text-center">
+                    <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden mb-4">
                       <img
                         src={member.image || "https://via.placeholder.com/150"}
                         alt={<StripHtml html={member.name || "No Name"} />}
@@ -87,19 +93,19 @@ const Team = () => {
                       />
                     </div>
                     <div
-                      className="mb-2 text-xl font-semibold"
+                      className="mb-2 text-lg sm:text-xl font-semibold"
                       dangerouslySetInnerHTML={{
                         __html: member.name || "Unknown Name",
                       }}
                     />
                     <div
-                      className="mb-4"
+                      className="mb-4 text-sm sm:text-base"
                       dangerouslySetInnerHTML={{
                         __html: member.role || "Unknown Role",
                       }}
                     />
                     <div
-                      className="text-gray-700"
+                      className="text-gray-700 text-sm sm:text-base"
                       dangerouslySetInnerHTML={{
                         __html:
                           member.testimonial || "No testimonial available.",
@@ -118,15 +124,17 @@ const Team = () => {
           </div>
         )}
         {teamMembers.length > 0 && (
-          <div className="mt-10 -mb-16 flex items-center justify-center space-x-4">
+          <div className="mt-6 sm:mt-10 -mb-16 flex items-center justify-center space-x-2 sm:space-x-4">
             {teamMembers.map((_, index) => (
-              <div
+              <button
                 key={index}
+                onClick={() => goToSlide(index)}
                 className={`rounded-full transition-all duration-300 ${
                   index === currentSlide
-                    ? "w-10 h-2 bg-secondaryBlack"
-                    : "w-2 h-2 bg-gray-200"
+                    ? "w-8 h-2 sm:w-10 sm:h-2 bg-secondaryBlack"
+                    : "w-2 h-2 sm:w-2 sm:h-2 bg-gray-200"
                 }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>

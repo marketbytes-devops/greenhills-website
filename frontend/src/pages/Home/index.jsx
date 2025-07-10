@@ -20,7 +20,7 @@ const Home = () => {
       <div className="z-40 relative -top-0 md:-top-32 mt-8 md:mt-0">
         <BookingForm />
       </div>
-      <section className="-mt-20">
+      <section className="-mt-0 md:-mt-24 mb-4 md:mb-10">
         <Services />
       </section>
       <section className="container-secondary mx-auto">

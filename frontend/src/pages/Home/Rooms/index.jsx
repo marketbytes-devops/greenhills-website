@@ -35,9 +35,9 @@ const Rooms = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row items-center justify-between">
         {titleData && (
-          <div className="space-y-6">
+          <div className="space-y-6 text-center md:text-left">
             {titleData.title && (
               <div dangerouslySetInnerHTML={{ __html: titleData.title }} />
             )}
@@ -50,7 +50,7 @@ const Rooms = () => {
         )}
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-normal w-44 xl:w-44 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300"
+          className="flex items-center justify-center space-x-2 bg-secondaryBlack text-md text-white font-normal w-full md:w-44 xl:w-44 h-10 xl:h-12 rounded-full hover:bg-primary hover:text-white transition-all duration-300 mt-4 md:mt-0"
         >
           Check Availability
         </button>
@@ -80,19 +80,20 @@ const Rooms = () => {
                 />
               </div>
             </div>
-            <div className="w-full md:w-1/2 space-y-6">
+            <div className="w-full md:w-1/2 space-y-6 text-center md:text-left">
               <div
-                dangerouslySetInnerHTML={{ __html: card.title || "No Title" }}
+                dangerouslySetInnerHTML={{ __html: card.title || "No Title" }} 
+                className="-mb-4 md:-mb-0"
               />
               <div
                 dangerouslySetInnerHTML={{
                   __html: card.description || "No Description",
                 }}
               />
-              <Link to={card.link} className="group">
+              <Link to={card.link} className="group block md:inline-block">
                 <FontAwesomeIcon
                   icon={faArrowRight}
-                  className="mt-8 -rotate-45 group-hover:rotate-0 transition-all duration-300 text-gray-500 text-xl md:text-2xl"
+                  className="mt-0 -rotate-45 group-hover:rotate-0 transition-all duration-300 text-gray-500 text-xl md:text-2xl"
                 />
               </Link>
             </div>

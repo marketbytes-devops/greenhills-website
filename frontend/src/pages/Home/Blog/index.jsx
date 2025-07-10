@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, memo, useRef } from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
 import StripHtml from "../../../components/stripHTML";
@@ -14,6 +14,7 @@ const Blog = ({ className = "" }) => {
   const [blogItems, setBlogItems] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [error, setError] = useState(null);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,36 +55,21 @@ const Blog = ({ className = "" }) => {
 
   const settings = {
     dots: false,
-    infinite: blogItems.length > (blogItems.length === 2 ? 2 : 3),
+    infinite: blogItems.length > 1,
     speed: 500,
-    slidesToShow: blogItems.length >= 3 ? 3 : blogItems.length,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
     centerMode: true,
-    centerPadding: "0px",
+    centerPadding: "20px",
     beforeChange: (current, next) => setCurrentSlide(next),
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: blogItems.length >= 2 ? 2 : blogItems.length,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "0px",
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "0px",
-        },
-      },
-    ],
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    sliderRef.current.slickGoTo(index);
   };
 
   const { title, description } = sectionData;
@@ -115,75 +101,119 @@ const Blog = ({ className = "" }) => {
       className={`mb-2 lg:mb-6 ${className}`}
       aria-labelledby="blog-title"
     >
-      <div>
-        <div className="flex flex-col md:flex-row gap-0 md:gap-16 items-start mb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-0">
+        <div className="flex flex-col md:flex-row gap-4 sm:gap-8 md:gap-16 items-start mb-8 sm:mb-12">
           <div className="md:w-1/2">
-            {title && <h2 id="blog-title"><StripHtml html={title} /></h2>}
+            {title && (
+              <h2
+                id="blog-title"
+              >
+                <StripHtml html={title} />
+              </h2>
+            )}
           </div>
-          <div className="md:w-1/2 flex flex-col gap-6">
-            {description && <p><StripHtml html={description} /></p>}
+          <div className="md:w-1/2 flex flex-col gap-4 sm:gap-6">
+            {description && (
+              <p className="text-sm sm:text-base">
+                <StripHtml html={description} />
+              </p>
+            )}
             <MainButton
               label="More Info"
               onClick={() => (window.location.href = "/blogs")}
-              className="text-black hover:text-primary"
+              className="text-black hover:text-primary w-full sm:w-auto"
               aria-label="Learn more about this section"
             />
           </div>
         </div>
-        <div className="pb-16">
+        <div className="pb-16 sm:pb-0">
           {blogItems.length > 0 ? (
-            <div className="flex items-center">
-              <Slider {...settings} className="w-full">
+            <>
+              {/* Desktop and Tablet: Grid Layout */}
+              <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {blogItems.map((item, index) => (
-                  <div key={item.id || index} className="p-4">
+                  <div key={item.id || index}>
                     <Link
                       to={`blogs/${item.link}`}
                       className="flex flex-col items-start text-left"
                     >
-                      <div className="w-full h-52 overflow-hidden mb-4">
+                      <div className="w-full h-40 sm:h-52 overflow-hidden mb-4 rounded-xl">
                         <img
                           src={item.image || "https://via.placeholder.com/150"}
                           alt={<StripHtml html={item.title || "No Title"} />}
-                          className="w-full h-full rounded-xl object-cover"
+                          className="w-full h-full object-cover"
                           onError={(e) => {
                             e.target.src = "https://via.placeholder.com/150";
                           }}
                         />
                       </div>
-                      <h5
-                        className="text-black mb-2 line-clamp-2 text-lg font-semibold"
-                      >
+                      <h5 className="text-black mb-2 line-clamp-2 text-base sm:text-lg font-semibold">
                         <StripHtml html={item.title || "Unknown Title"} />
                       </h5>
-                      <p
-                        className="mb-2 text-black line-clamp-3"
-                      >
-                        <StripHtml html={item.description || "No description available."} />
+                      <p className="mb-2 text-black line-clamp-3 text-sm sm:text-base">
+                        <StripHtml
+                          html={item.description || "No description available."}
+                        />
                       </p>
                     </Link>
                   </div>
                 ))}
-              </Slider>
-            </div>
+              </div>
+              {/* Mobile: Slider */}
+              <div className="sm:hidden flex items-center">
+                <Slider {...settings} ref={sliderRef} className="w-full">
+                  {blogItems.map((item, index) => (
+                    <div key={item.id || index} className="p-2">
+                      <Link
+                        to={`blogs/${item.link}`}
+                        className="flex flex-col items-start text-left"
+                      >
+                        <div className="w-full h-40 overflow-hidden mb-4 rounded-xl">
+                          <img
+                            src={item.image || "https://via.placeholder.com/150"}
+                            alt={<StripHtml html={item.title || "No Title"} />}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.src = "https://via.placeholder.com/150";
+                            }}
+                          />
+                        </div>
+                        <h5 className="text-black mb-2 line-clamp-2 text-base font-semibold">
+                          <StripHtml html={item.title || "Unknown Title"} />
+                        </h5>
+                        <p className="mb-2 text-black line-clamp-3 text-sm">
+                          <StripHtml
+                            html={item.description || "No description available."}
+                          />
+                        </p>
+                      </Link>
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+              {/* Mobile: Dots */}
+              {blogItems.length > 0 && (
+                <div className="sm:hidden mt-6 -mb-16 flex items-center justify-center space-x-2">
+                  {blogItems.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToSlide(index)}
+                      className={`rounded-full transition-all duration-300 ${
+                        index === currentSlide
+                          ? "w-8 h-2 bg-secondaryBlack"
+                          : "w-2 h-2 bg-gray-200"
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+            </>
           ) : (
             <div className="w-full h-64 flex items-center justify-center">
               <div className="text-center text-gray-500">
                 <p>No blog posts available.</p>
               </div>
-            </div>
-          )}
-          {blogItems.length > 0 && (
-            <div className="mt-10 -mb-16 flex items-center justify-center space-x-4">
-              {blogItems.map((_, index) => (
-                <div
-                  key={index}
-                  className={`rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? "w-10 h-2 bg-secondaryBlack"
-                      : "w-2 h-2 bg-gray-200"
-                  }`}
-                />
-              ))}
             </div>
           )}
         </div>

@@ -82,7 +82,7 @@ const GatherSection = ({ className = "" }) => {
                         <div dangerouslySetInnerHTML={{ __html: content.description }} className="mt-4" />
                     )}
                     {content && content.link && (
-                          <div className="mt-4">
+                          <div className="mt-4 mb-6">
                               <MainButton label="More Info" className="text-gray-100" onClick={() => (window.location.href = content.link)} />
                           </div>
                     )}
@@ -99,7 +99,7 @@ const GatherSection = ({ className = "" }) => {
                                         loading="lazy"
                                     />
                                     {item.title && (
-                                        <div className="mt-4 flex items-center justify-start space-x-2">
+                                        <div className="mt-6 flex items-center justify-start space-x-2">
                                             <div dangerouslySetInnerHTML={{ __html: item.title }} />
                                             <FontAwesomeIcon
                                                 icon={faArrowRight}

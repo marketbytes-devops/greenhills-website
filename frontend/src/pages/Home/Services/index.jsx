@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import StripHtml from "../../../components/stripHTML";
 import { fetchServiceSlider } from "../../../helpers/apiService";
@@ -6,6 +6,7 @@ import { fetchServiceSlider } from "../../../helpers/apiService";
 const Services = () => {
   const [services, setServices] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     fetchServiceSlider()
@@ -30,7 +31,7 @@ const Services = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     centerMode: true,
-    centerPadding: "0px",
+    centerPadding: "20px",
     beforeChange: (current, next) => setCurrentSlide(next),
     responsive: [
       {
@@ -39,7 +40,7 @@ const Services = () => {
           slidesToShow: services.length === 2 ? 2 : 2,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "0px",
+          centerPadding: "20px",
         },
       },
       {
@@ -48,10 +49,15 @@ const Services = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "0px",
+          centerPadding: "20px",
         },
       },
     ],
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    sliderRef.current.slickGoTo(index);
   };
 
   if (!services.length) {
@@ -65,9 +71,9 @@ const Services = () => {
   }
 
   return (
-    <div className="slider-container mx-auto px-4 py-8 relative">
+    <div className="slider-container mx-auto px-4 sm:px-6 lg:px-0 py-8 relative">
       <div className="flex items-center">
-        <Slider {...settings} className="w-full">
+        <Slider {...settings} ref={sliderRef} className="w-full">
           {services.map((service) => (
             <div key={service.id} className="p-2 group">
               <div className="bg-white group-hover:bg-secondaryBlack shadow-lg hover:shadow-xl rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-1 w-full mx-auto flex flex-col justify-center items-center min-h-[200px]">
@@ -83,7 +89,7 @@ const Services = () => {
                 </div>
                 <div className="p-4 text-center">
                   <div
-                    className="line-clamp-2 group-hover:text-white transition-colors duration-300"
+                    className="line-clamp-2 group-hover:text-white transition-colors duration-300 text-sm sm:text-base"
                     dangerouslySetInnerHTML={{
                       __html: service.title || "No Title",
                     }}
@@ -94,15 +100,17 @@ const Services = () => {
           ))}
         </Slider>
       </div>
-      <div className="mt-10 -mb-4 flex items-center justify-center space-x-4">
+      <div className="mt-6 sm:mt-10 -mb-4 flex items-center justify-center space-x-2 sm:space-x-4">
         {services.map((_, index) => (
-          <div
+          <button
             key={index}
+            onClick={() => goToSlide(index)}
             className={`rounded-full transition-all duration-300 ${
               index === currentSlide
-                ? "w-10 h-2 bg-secondaryBlack"
-                : "w-2 h-2 bg-gray-200"
+                ? "w-8 h-2 sm:w-10 sm:h-2 bg-secondaryBlack"
+                : "w-2 h-2 sm:w-2 sm:h-2 bg-gray-200"
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
