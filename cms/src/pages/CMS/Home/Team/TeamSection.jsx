@@ -4,7 +4,7 @@ const TeamSection = () => {
   const contentFields = [
     {
       name: 'image',
-      label: 'Person Image',
+      label: 'Person Image (For best performance, use WEBP images under 800KB.)',
       type: 'file',
       accept: 'image/png,image/jpeg,image/webp,image/gif',
       required: false,

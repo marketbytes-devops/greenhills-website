@@ -4,7 +4,7 @@ const ExploreSection = () => {
   const contentFields = [
     {
       name: 'image',
-      label: 'Background Image',
+      label: 'Background Image (For best performance, use WEBP images under 800KB.)',
       type: 'file',
       accept: 'image/png,image/jpeg,image/webp,image/gif',
       required: true,

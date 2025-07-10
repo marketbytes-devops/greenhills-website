@@ -28,7 +28,7 @@ const GatherServices = () => {
     },
     {
       name: 'image',
-      label: 'Service Image',
+      label: 'Service Image (For best performance, use WEBP images under 800KB.)',
       type: 'file',
       accept: 'image/png,image/jpeg,image/webp,image/gif',
       required: false,
