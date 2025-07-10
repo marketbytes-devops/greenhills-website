@@ -108,13 +108,13 @@ const MenuTabItems = ({ tabData, tabMenuItemsData }) => {
           <div className="flex items-center">
             <Slider {...settings} ref={sliderRef} className="w-full">
               {activeTabItems.map((item, index) => (
-                <div key={item.id} className="p-4 md:p-4">
+                <div key={item.id} className="group p-4 md:p-4">
                   <div className="flex flex-col justify-center">
-                    <div className="overflow-hidden mb-4">
+                    <div className="rounded-lg overflow-hidden mb-4 shadow-sm group-hover:shadow-lg transition-shadow duration-300">
                       <img
                         src={item.image || "https://via.placeholder.com/150"}
                         alt={<StripHtml html={item.title || "No title"} />}
-                        className="w-full h-[300px] rounded-lg object-cover"
+                        className="w-full h-[300px] rounded-lg object-cover shadow-sm group-hover:shadow-lg transition-shadow duration-300"
                         onError={(e) => {
                           e.target.src = "https://via.placeholder.com/150";
                         }}

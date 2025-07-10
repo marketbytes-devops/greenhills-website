@@ -135,13 +135,13 @@ const Blog = ({ className = "" }) => {
                   <div key={item.id || index}>
                     <Link
                       to={`blogs/${item.link}`}
-                      className="flex flex-col items-start text-left"
+                      className="group flex flex-col items-start text-left bg-white rounded-xl"
                     >
-                      <div className="w-full h-40 sm:h-52 overflow-hidden mb-4 rounded-xl">
+                      <div className="w-full h-40 sm:h-52 overflow-hidden mb-4 rounded-xl shadow-sm group-hover:shadow-lg transition-shadow duration-300">
                         <img
                           src={item.image || "https://via.placeholder.com/150"}
                           alt={<StripHtml html={item.title || "No Title"} />}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover rounded-xl"
                           onError={(e) => {
                             e.target.src = "https://via.placeholder.com/150";
                           }}
@@ -151,9 +151,7 @@ const Blog = ({ className = "" }) => {
                         <StripHtml html={item.title || "Unknown Title"} />
                       </h5>
                       <p className="mb-2 text-black line-clamp-3 text-sm sm:text-base">
-                        <StripHtml
-                          html={item.description || "No description available."}
-                        />
+                        <StripHtml html={item.description || "No description available."} />
                       </p>
                     </Link>
                   </div>
@@ -166,13 +164,13 @@ const Blog = ({ className = "" }) => {
                     <div key={item.id || index} className="p-2">
                       <Link
                         to={`blogs/${item.link}`}
-                        className="flex flex-col items-start text-left"
+                        className="group flex flex-col items-start text-left"
                       >
-                        <div className="w-full h-40 overflow-hidden mb-4 rounded-xl">
+                        <div className="w-full h-40 overflow-hidden mb-4 rounded-xl shadow-sm group-hover:shadow-lg transition-shadow duration-300">
                           <img
                             src={item.image || "https://via.placeholder.com/150"}
                             alt={<StripHtml html={item.title || "No Title"} />}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover rounded-xl"
                             onError={(e) => {
                               e.target.src = "https://via.placeholder.com/150";
                             }}

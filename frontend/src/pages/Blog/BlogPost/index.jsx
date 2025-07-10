@@ -58,7 +58,7 @@ const BlogPost = () => {
                   "https://via.placeholder.com/300x200?text=No+Image"
                 }
                 alt={posts.title}
-                className="w-full h-80 object-cover rounded-lg shadow-md group-hover:shadow-lg transition-colors duration-300"
+                className="w-full h-80 object-cover rounded-lg group-hover:shadow-lg group-hover:shadow-[#333333] transition-colors duration-300"
                 loading="lazy"
               />
               {posts.title && (
