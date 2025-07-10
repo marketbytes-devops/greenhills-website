@@ -15,8 +15,8 @@ const About = () => {
     { id: 'about-section-two', label: 'Highlights Section', content: <SectionTwo /> },
     { id: 'about-section-three', label: 'Amenities Section', content: <FirstSection /> },
     { id: 'about-section-four', label: 'Second Highlight Section', content: <SectionFour /> },
-    { id: 'about-section-explore', label: 'About Section Five', content: <TitleSection /> },
-    { id: 'about-section-five', label: 'About Section Six', content: <SectionFive /> },
+    { id: 'about-section-explore', label: 'Gallery Section', content: <TitleSection /> },
+    { id: 'about-section-five', label: 'Explore Section', content: <SectionFive /> },
   ];
 
   return (

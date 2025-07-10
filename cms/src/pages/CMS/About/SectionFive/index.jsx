@@ -27,7 +27,7 @@ const SectionFive = () => {
         <ContentManager
             apiBaseUrl="/about/about-section-five/"
             fields={contentFields}
-            title="About Section Five Management"
+            title="Explore Section Management"
             singleEntry
         />
     );
