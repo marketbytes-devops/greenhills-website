@@ -23,7 +23,7 @@ const AmenitiesSection = ({ sectionData, cardsData }) => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     centerMode: true,
-    centerPadding: "20px",
+    centerPadding: "0px",
     beforeChange: (current, next) => setCurrentSlide(next),
     responsive: [
       {
@@ -32,7 +32,7 @@ const AmenitiesSection = ({ sectionData, cardsData }) => {
           slidesToShow: Math.min(cardsData?.length || 0, 2),
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "20px",
+          centerPadding: "0px",
         },
       },
       {
@@ -41,7 +41,7 @@ const AmenitiesSection = ({ sectionData, cardsData }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "20px",
+          centerPadding: "0px",
         },
       },
     ],

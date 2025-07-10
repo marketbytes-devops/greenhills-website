@@ -31,7 +31,7 @@ const Services = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     centerMode: true,
-    centerPadding: "20px",
+    centerPadding: "0px",
     beforeChange: (current, next) => setCurrentSlide(next),
     responsive: [
       {
@@ -40,7 +40,7 @@ const Services = () => {
           slidesToShow: services.length === 2 ? 2 : 2,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "20px",
+          centerPadding: "0px",
         },
       },
       {
@@ -49,7 +49,7 @@ const Services = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           centerMode: true,
-          centerPadding: "20px",
+          centerPadding: "0px",
         },
       },
     ],

@@ -63,7 +63,7 @@ const Blog = ({ className = "" }) => {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     centerMode: true,
-    centerPadding: "20px",
+    centerPadding: "0px",
     beforeChange: (current, next) => setCurrentSlide(next),
   };
 

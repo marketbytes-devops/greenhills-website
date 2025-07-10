@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const AmenitiesSection = ({ sectionData, cardsData }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
 
   if (
     !sectionData?.title &&
@@ -53,28 +54,33 @@ const AmenitiesSection = ({ sectionData, cardsData }) => {
     return div.textContent || div.innerText || "";
   };
 
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    sliderRef.current.slickGoTo(index);
+  };
+
   return (
     <>
       {(sectionData?.title || sectionData?.description) && (
         <div className="text-center max-w-5xl mx-auto">
           {sectionData.title && (
             <div
-              className="pb-10 space-y-6"
+              className="pb-10 space-y-6 px-4 sm:px-4 text-xl sm:text-2xl md:text-3xl font-bold"
               dangerouslySetInnerHTML={{ __html: sectionData.title }}
             />
           )}
           {sectionData.description && (
             <div
-              className="pb-10"
+              className="pb-10 px-4 sm:px-4 text-sm sm:text-base"
               dangerouslySetInnerHTML={{ __html: sectionData.description }}
             />
           )}
         </div>
       )}
       {cardsData?.length > 0 && (
-        <div className="slider-container mx-auto px-4 py-8 relative max-w-7xl">
+        <div className="slider-container container-secondary mx-auto px-4 sm:px-6 lg:px-0 pt-0 sm:pt-8 pb-8 sm:pb-8 relative">
           <div className="flex items-center">
-            <Slider {...settings} className="w-full">
+            <Slider {...settings} ref={sliderRef} className="w-full">
               {cardsData.map((card) => (
                 <div key={card.id} className="p-2 group">
                   <div className="bg-white group-hover:bg-secondaryBlack shadow-lg hover:shadow-xl rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-1 w-full mx-auto flex flex-col justify-center items-center min-h-[200px]">
@@ -90,7 +96,7 @@ const AmenitiesSection = ({ sectionData, cardsData }) => {
                     </div>
                     <div className="p-4 text-center">
                       <div
-                        className="line-clamp-2 group-hover:text-white transition-colors duration-300 text-gray-900"
+                        className="line-clamp-2 group-hover:text-white transition-colors duration-300 text-gray-900 text-sm sm:text-base"
                         dangerouslySetInnerHTML={{ __html: card.title || "No Title" }}
                       />
                     </div>
@@ -100,13 +106,17 @@ const AmenitiesSection = ({ sectionData, cardsData }) => {
             </Slider>
           </div>
           {cardsData.length > 1 && (
-            <div className="mt-10 -mb-4 flex items-center justify-center space-x-4">
+            <div className="mt-6 sm:mt-10 -mb-4 flex items-center justify-center space-x-2 sm:space-x-4">
               {cardsData.map((_, index) => (
-                <div
+                <button
                   key={index}
+                  onClick={() => goToSlide(index)}
                   className={`rounded-full transition-all duration-300 ${
-                    index === currentSlide ? "w-10 h-2 bg-secondaryBlack" : "w-2 h-2 bg-gray-200"
+                    index === currentSlide
+                      ? "w-8 h-2 sm:w-10 sm:h-2 bg-secondaryBlack"
+                      : "w-2 h-2 sm:w-2 sm:h-2 bg-gray-200"
                   }`}
+                  aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>

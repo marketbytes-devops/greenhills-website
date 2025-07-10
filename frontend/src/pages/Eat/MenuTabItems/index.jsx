@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,6 +9,7 @@ const MenuTabItems = ({ tabData, tabMenuItemsData }) => {
     tabData.length > 0 ? tabData[0].id : null
   );
   const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     if (tabData.length > 0 && !activeTab) {
@@ -58,6 +59,11 @@ const MenuTabItems = ({ tabData, tabMenuItemsData }) => {
     ],
   };
 
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    sliderRef.current.slickGoTo(index);
+  };
+
   const renderStarRating = (rating) => {
     const maxStars = 5;
     const normalizedRating = parseFloat(rating) || 0;
@@ -79,14 +85,14 @@ const MenuTabItems = ({ tabData, tabMenuItemsData }) => {
   };
 
   return (
-    <div className="px-4 md:px-0">
-      <div className="text-center mb-8">
+     <div>
+      <div className="text-center mb-6 sm:mb-14">
         <div className="flex flex-wrap justify-center gap-4">
           {tabData.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center justify-center space-x-2 border border-black hover:border-none text-md text-black font-normal px-10 w-full xl:w-fit h-10 xl:h-12 rounded-full hover:bg-[#2b6843] hover:text-white transition-all duration-300 ${
+              className={`flex items-center justify-center space-x-2 border border-black hover:border-none text-md text-black font-normal px-10 w-full sm:w-fit h-10 xl:h-12 rounded-full hover:bg-[#2b6843] hover:text-white transition-all duration-300 ${
                 activeTab === tab.id
                   ? "bg-secondaryBlack text-white"
                   : "bg-white text-secondaryBlack"
@@ -100,26 +106,30 @@ const MenuTabItems = ({ tabData, tabMenuItemsData }) => {
       <div className="pb-16">
         {activeTabItems.length > 0 ? (
           <div className="flex items-center">
-            <Slider {...settings} className="w-full">
+            <Slider {...settings} ref={sliderRef} className="w-full">
               {activeTabItems.map((item, index) => (
-                <div key={item.id} className="p-0 md:p-4">
+                <div key={item.id} className="p-4 md:p-4">
                   <div className="flex flex-col justify-center">
                     <div className="overflow-hidden mb-4">
                       <img
                         src={item.image || "https://via.placeholder.com/150"}
                         alt={<StripHtml html={item.title || "No title"} />}
                         className="w-full h-[300px] rounded-lg object-cover"
+                        onError={(e) => {
+                          e.target.src = "https://via.placeholder.com/150";
+                        }}
                       />
                     </div>
                     <div className="w-full text-left">
                       <div
-                        className="mb-2"
+                        className="mb-2 text-base sm:text-lg md:text-xl font-semibold"
                         dangerouslySetInnerHTML={{
                           __html: item.title || "Unknown Title",
                         }}
                       />
                       {renderStarRating(item.rating)}
                       <div
+                        className="text-sm sm:text-base"
                         dangerouslySetInnerHTML={{
                           __html: item.description || "No description",
                         }}
@@ -138,15 +148,17 @@ const MenuTabItems = ({ tabData, tabMenuItemsData }) => {
           </div>
         )}
         {activeTabItems.length > 0 && (
-          <div className="mt-10 -mb-16 flex items-center justify-center space-x-4">
+          <div className="mt-6 sm:mt-10 -mb-16 flex items-center justify-center space-x-2 sm:space-x-4">
             {activeTabItems.map((_, index) => (
-              <div
+              <button
                 key={index}
+                onClick={() => goToSlide(index)}
                 className={`rounded-full transition-all duration-300 ${
                   index === currentSlide
-                    ? "w-10 h-2 bg-secondaryBlack"
-                    : "w-2 h-2 bg-gray-200"
+                    ? "w-8 h-2 sm:w-10 sm:h-2 bg-secondaryBlack"
+                    : "w-2 h-2 sm:w-2 sm:h-2 bg-gray-200"
                 }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
