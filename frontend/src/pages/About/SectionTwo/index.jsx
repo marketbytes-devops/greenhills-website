@@ -32,20 +32,29 @@ const SectionTwo = () => {
         return (
           <div
             key={card.id}
-            className={`w-full h-[550px] flex flex-col ${flexDirection} items-center`}
+            className={`w-full flex flex-col ${flexDirection} items-center`}
           >
-            <div className="w-full md:w-1/2 h-full">
+            <div className="w-full md:w-1/2 h-[300px] md:h-[550px]">
               <img
-                src={card.image}
+                src={card.image || "/placeholder-image.jpg"}
                 alt={<StripHtml html={card.title || "No Title"} />}
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.src = "/placeholder-image.jpg";
+                }}
               />
             </div>
             <div
-              className={`w-full px-4 md:px-16 py-4 md:py-16 md:w-1/2 h-[550px] ${bgColor} ${textColor} flex flex-col justify-center p-8`}
+              className={`w-full px-4 sm:px-6 md:px-16 py-4 sm:py-6 md:py-16 md:w-1/2 h-auto md:h-[550px] ${bgColor} ${textColor} flex flex-col justify-center`}
             >
-              <div dangerouslySetInnerHTML={{ __html: card.title }} />
-              <div dangerouslySetInnerHTML={{ __html: card.description }} />
+              <div
+                dangerouslySetInnerHTML={{ __html: card.title || "No Title" }}
+              />
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: card.description || "No Description",
+                }}
+              />
             </div>
           </div>
         );
