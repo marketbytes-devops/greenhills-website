@@ -13,7 +13,7 @@ const Gather = () => {
         { id: 'gather-create-page', label: 'Create Detailed Page', content: <CreatePage /> },
         { id: 'gather-banner', label: 'Detailed Page Header Section', content: <Hero /> },
         { id: 'gather-highlights', label: 'Detailed Page Highlights Section', content: <GatherHighlightsTitle /> },
-        { id: 'gather-services', label: 'Detailed Page Services Section', content: <GatherServices /> },
+        { id: 'gather-services', label: 'Detailed Page Space Features Section', content: <GatherServices /> },
         { id: 'gather-amenities', label: 'Detailed Page Amenities Section', content: <AmenitiesFirstSection /> },
         { id: 'gather-explore', label: 'Detailed Page Explore Section', content: <GatherExplore /> },
     ];

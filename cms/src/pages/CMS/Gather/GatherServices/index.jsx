@@ -58,7 +58,7 @@ const GatherServices = () => {
     <ContentManager
       apiBaseUrl="/gather/gather-services/"
       fields={contentFields}
-      title="Gather Detail Page Services Management"
+      title="Gather Detail Page Space Features Management"
       singleEntry={false}
     />
   );
