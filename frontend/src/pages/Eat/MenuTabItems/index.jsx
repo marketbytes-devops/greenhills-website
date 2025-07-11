@@ -66,10 +66,10 @@ const MenuTabItems = ({ tabData, tabMenuItemsData }) => {
 
   const renderStarRating = (rating) => {
     const maxStars = 5;
-    const normalizedRating = parseFloat(rating) || 0;
+    const normalizedRating = Math.min(Math.max(parseFloat(rating) || 0, 0), maxStars); 
     const fullStars = Math.floor(normalizedRating);
     const hasHalfStar = normalizedRating % 1 >= 0.5;
-    const emptyStars = maxStars - fullStars - (hasHalfStar ? 1 : 0);
+    const emptyStars = Math.max(maxStars - fullStars - (hasHalfStar ? 1 : 0), 0); 
 
     return (
       <div className="flex items-center text-yellow-500 text-md mb-4">
@@ -85,7 +85,7 @@ const MenuTabItems = ({ tabData, tabMenuItemsData }) => {
   };
 
   return (
-     <div>
+    <div>
       <div className="text-center mb-6 sm:mb-14">
         <div className="flex flex-wrap justify-center gap-4">
           {tabData.map((tab) => (

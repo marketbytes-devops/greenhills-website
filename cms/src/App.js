@@ -24,6 +24,7 @@ import SMM from "./pages/SMM";
 import EMS from "./pages/EMS";
 import PrivacyPolicy from "./pages/CMS/PrivacyPolicy";
 import TermsConditions from "./pages/CMS/TermsConditions";
+import NotFound from "./pages/NotFound";
 
 const ProtectedRoute = ({ children, isAuthenticated }) => {
   return isAuthenticated ? children : <Navigate to="/login" />;
@@ -115,6 +116,10 @@ function App() {
           element: <TermsConditions />,
         },
       ],
+    },
+    {
+      path: "*",
+      element: <NotFound />,
     },
   ]);
 

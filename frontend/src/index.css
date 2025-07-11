@@ -345,3 +345,7 @@ input[type=number] {
 strong {
   font-weight: 700;
 }
+
+.grecaptcha-badge { 
+    visibility: hidden !important;
+}

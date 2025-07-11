@@ -41,7 +41,7 @@ const Footer = () => {
       <div className="container-secondary mx-auto px-4 sm:px-6 lg:px-0">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-start mb-8">
           <div className="text-center md:text-left">
-            <h3 className="text-2xl font-bold text-gray-100">Green Hills</h3>
+            <h3 className="text-2xl font-bold text-gray-100">Hotel Green Hills</h3>
             <p className="mt-2 text-gray-400 text-sm max-w-xs">
               {settings.description}
             </p>
@@ -99,7 +99,7 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-gray-700">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {currentYear} <a href="https://www.marketbytes.in" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition-colors duration-200">MarketBytes</a>. All rights reserved
+            <span>© {currentYear} All Rights Reserved by Hotel Green Hills. </span><span className='block'>Made With Passion By <a href="https://www.marketbytes.in" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition-colors duration-200">MarketBytes WebWorks Pvt Ltd.</a></span> 
           </p>
 
           <SocialMedia />
