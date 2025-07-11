@@ -64,7 +64,7 @@ const HighlightSection = ({ highlights }) => {
                   )}
                   {card.original_price && (
                     <p className="font-medium">
-                      Rs. {card.original_price}
+                      Rs. <del>{card.original_price}</del>
                     </p>
                   )}
                   {card.rating && (
