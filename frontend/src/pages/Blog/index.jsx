@@ -10,7 +10,7 @@ const Blog = () => {
         <title>Blog Explore Valparai and Western Ghats | Green Hills</title>
         <meta name="description" content="Discover travel tips, wildlife insights, local attractions and scenic must-visits in Valparai through the Hotel Green Hills blog." />
         <meta name="keywords" content="Best Blogs from Valparai" />
-        <link rel="canonical" href="https://www.hotelgreenhills.in/blogs" />
+        <link rel="canonical" href="https://www.hotelgreenhills.in/blog-hotel-green-hills-valparai" />
       </Helmet>
       <Hero />
       <section className="bg-secondaryLightBlack my-8 sm:my-8 lg:my-16">

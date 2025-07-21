@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home Page -->
+  <url>
+    <loc>https://www.hotelgreenhills.in/hotel-green-hills-valparai</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <!-- About Page -->
+  <url>
+    <loc>https://www.hotelgreenhills.in/about-hotel-green-hills-valparai</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <!-- Stay Pages -->
+  <url>
+    <loc>https://www.hotelgreenhills.in/stay/deluxe-double-room-valparai</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.hotelgreenhills.in/stay/super-deluxe-room-valparai</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.hotelgreenhills.in/stay/standard-double-room-valparai</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <!-- Eat Pages -->
+  <url>
+    <loc>https://www.hotelgreenhills.in/eat/menu-hotel-green-hills-valparai</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.hotelgreenhills.in/eat/bar-hotel-green-hills-valparai</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <!-- Gather Pages -->
+  <url>
+    <loc>https://www.hotelgreenhills.in/gather/events-hotel-green-hills-valparai</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.hotelgreenhills.in/gather/business-gatherings-valparai</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>

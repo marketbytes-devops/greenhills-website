@@ -87,7 +87,7 @@ const BlogDetail = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {relatedPosts.map((post) => (
                     <div key={post.id} className="flex-1">
-                      <Link to={`/blogs/${post.link}`} className="group">
+                      <Link to={`/blog-hotel-green-hills-valparai/${post.link}`} className="group">
                         <div className="relative">
                           <img
                             src={

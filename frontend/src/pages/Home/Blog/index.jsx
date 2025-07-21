@@ -120,7 +120,7 @@ const Blog = ({ className = "" }) => {
             )}
             <MainButton
               label="More Info"
-              onClick={() => (window.location.href = "/blogs")}
+              onClick={() => (window.location.href = "/blog-hotel-green-hills-valparai")}
               className="text-black hover:text-primary w-full sm:w-auto"
               aria-label="Learn more about this section"
             />
@@ -134,7 +134,7 @@ const Blog = ({ className = "" }) => {
                 {blogItems.map((item, index) => (
                   <div key={item.id || index}>
                     <Link
-                      to={`blogs/${item.link}`}
+                      to={`blog-hotel-green-hills-valparai/${item.link}`}
                       className="group flex flex-col items-start text-left bg-white rounded-xl"
                     >
                       <div className="w-full h-40 sm:h-52 overflow-hidden mb-4 rounded-xl shadow-sm group-hover:shadow-lg transition-shadow duration-300">
@@ -163,7 +163,7 @@ const Blog = ({ className = "" }) => {
                   {blogItems.map((item, index) => (
                     <div key={item.id || index} className="p-2">
                       <Link
-                        to={`blogs/${item.link}`}
+                        to={`blog-hotel-green-hills-valparai/${item.link}`}
                         className="group flex flex-col items-start text-left"
                       >
                         <div className="w-full h-40 overflow-hidden mb-4 rounded-xl shadow-sm group-hover:shadow-lg transition-shadow duration-300">

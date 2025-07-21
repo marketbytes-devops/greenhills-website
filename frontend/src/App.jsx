@@ -23,7 +23,7 @@ const pages = [
   { link: 'eat/:slug', name: Eat },
   { link: 'gather/:slug', name: Gather },
   { link: 'blog-hotel-green-hills-valparai', name: Blog },
-  { link: 'blogs/:id', name: BlogDetail },
+  { link: 'blog-hotel-green-hills-valparai/:id', name: BlogDetail },
   { link: 'explore-valparai-green-hills', name: Explore },
   { link: 'gallery-hotel-green-hills-valparai', name: Gallery },
   { link: 'terms-and-conditions', name: TermsConditions },
