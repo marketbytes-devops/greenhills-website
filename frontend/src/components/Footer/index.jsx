@@ -22,12 +22,14 @@ const Footer = () => {
       try {
         const response = await fetchAdditionalSettings();
         const data = response.data[0];
+        const cleanPhone = (phone) => (phone ? phone.replace(/[^\d\s+]/g, '') : '');
         setSettings({
-          description: data.description,
-          location: data.location,
-          phone_one: data.phone_one,
-          phone_two: data.phone_two,
-          email: data.email,
+          description: data.description || settings.description,
+          location: data.location || settings.location,
+          phone_one: cleanPhone(data.phone_one),
+          phone_two: cleanPhone(data.phone_two),
+          phone_three: cleanPhone(data.phone_three),
+          email: data.email || settings.email,
         });
       } catch (error) {
         console.error('Error fetching additional settings:', error);
@@ -75,11 +77,12 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col items-start relative top-0 md:top-12 space-y-2">
-            <a href={`tel:${settings.phone_one.replace(/\s/g, '')}`} className="flex items-center text-gray-400 text-sm hover:text-gray-100 transition-colors duration-200">
+            <a href={`tel:${settings.phone_three ? settings.phone_three.replace(/\s/g, '') : ''}`} className="flex items-center text-gray-400 text-sm hover:text-gray-100 transition-colors duration-200">
               <svg className="w-4 h-4 mr-2 border border-gray-400 p-0.5 rounded-full text-gray-400" fill="none" stroke="white" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              {settings.phone_three}</a>
+              {settings.phone_three || ''}
+            </a>
 
             <a href={`mailto:${settings.email}`} className="flex items-center text-gray-400 text-sm hover:text-gray-100 transition-colors duration-200">
               <svg className="w-4 h-4 mr-2 border border-gray-400 p-0.5 rounded-full text-gray-400" fill="none" stroke="white" viewBox="0 0 24 24">

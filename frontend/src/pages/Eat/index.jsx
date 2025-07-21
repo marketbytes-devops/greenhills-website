@@ -108,6 +108,16 @@ const Eat = () => {
           </ul>
         </div>
       )}
+      {/* 
+        Commented out for future use as per client request.
+        {timeData && (
+          <div className="container-secondary mx-auto my-8 sm:my-8 lg:my-16 text-center">
+            <p className="text-gray-700 text-lg">
+              Opening Time: {timeData.opening_time} | Closing Time: {timeData.closing_time}
+            </p>
+          </div>
+        )}
+      */}
       <div
         className="container-secondary mx-auto my-8 sm:my-8 lg:my-16 w-full h-auto flex flex-col items-center justify-center"
       >

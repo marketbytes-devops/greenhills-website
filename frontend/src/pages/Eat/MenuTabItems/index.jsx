@@ -5,17 +5,16 @@ import "slick-carousel/slick/slick-theme.css";
 import StripHtml from "../../../components/stripHTML";
 
 const MenuTabItems = ({ tabData, tabMenuItemsData }) => {
-  const [activeTab, setActiveTab] = useState(
-    tabData.length > 0 ? tabData[0].id : null
-  );
+  const [activeTab, setActiveTab] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    if (tabData.length > 0 && !activeTab) {
+    if (tabData.length > 0) {
+      // Always set the first tab as active when tabData changes
       setActiveTab(tabData[0].id);
     }
-  }, [tabData, activeTab]);
+  }, [tabData]);
 
   const activeTabItems = tabMenuItemsData.filter(
     (item) => item.tab_name === activeTab
