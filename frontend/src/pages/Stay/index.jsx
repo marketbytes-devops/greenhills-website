@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async"; // Import Helmet
 import Banner from "../../components/Banner";
 import HighlightSection from "./HighlightSection";
 import AmenitiesSection from "./AmenitiesSection";
@@ -32,26 +32,42 @@ const Stay = () => {
   const [gallerySectionData, setGallerySectionData] = useState([]);
   const [otherStaysData, setOtherStaysData] = useState(null);
 
-  const seoData = {
-    "deluxe-double-bedroom": {
-      title: "Deluxe Double Room in Valparai | Hotel Green Hills",
-      description: "Book a deluxe double room at Hotel Green Hills, Valparai ideal for couples or small families, with scenic views, cozy interiors, and modern amenities.",
-      keywords: "Best deluxe double room in Valparai",
-      canonical: "https://www.hotelgreenhills.in/stay/deluxe-double-bedroom",
+  // SEO data for Stay pages
+  const seoData = [
+    {
+      id: 1,
+      title: "Deluxe Double Room",
+      link: "deluxe-double-room-valparai",
+      seoTitle: "Deluxe Double Room in Valparai | Hotel Green Hills",
+      description:
+        "Book a deluxe double room at Hotel Green Hills, Valparai ideal for couples or small families, with scenic views, cozy interiors, and modern amenities.",
+      keyword: "Best deluxe double room in Valparai",
+      canonical: "https://www.hotelgreenhills.in/stay/deluxe-double-room-valparai",
     },
-    "super-deluxe-room": {
-      title: "Super Deluxe Room in Valparai | Hotel Green Hills",
-      description: "Experience luxury in Valparai with our Deluxe Room at Hotel Green Hills spacious interiors, valley views, premium amenities, ideal for special stays.",
-      keywords: "Best super deluxe room in Valparai",
-      canonical: "https://www.hotelgreenhills.in/stay/super-deluxe-room",
+    {
+      id: 2,
+      title: "Super Deluxe Room",
+      link: "super-deluxe-room-valparai",
+      seoTitle: "Super Deluxe Room in Valparai | Hotel Green Hills",
+      description:
+        "Experience luxury in Valparai with our Deluxe Room at Hotel Green Hills spacious interiors, valley views, premium amenities, ideal for special stays.",
+      keyword: "Best super deluxe room in Valparai",
+      canonical: "https://www.hotelgreenhills.in/stay/super-deluxe-room-valparai",
     },
-    "standard-double-room": {
-      title: "Standard Double Room in Valparai | Hotel Green Hills",
-      description: "Book a Standard Double Room at Hotel Green Hills, Valparai cozy, budget-friendly accommodations with scenic views and essential amenities.",
-      keywords: "standard double room in Valparai",
-      canonical: "https://www.hotelgreenhills.in/stay/standard-double-room",
+    {
+      id: 3,
+      title: "Standard Double Room",
+      link: "standard-double-room-valparai",
+      seoTitle: "Standard Double Room in Valparai | Hotel Green Hills",
+      description:
+        "Book a Standard Double Room at Hotel Green Hills, Valparai cozy, budget-friendly accommodations with scenic views and essential amenities.",
+      keyword: "standard double room in Valparai",
+      canonical: "https://www.hotelgreenhills.in/stay/standard-double-room-valparai",
     },
-  };
+  ];
+
+  // Find the SEO data for the current slug
+  const currentSeo = seoData.find((page) => page.link === slug) || {};
 
   useEffect(() => {
     Promise.all([
@@ -88,13 +104,15 @@ const Stay = () => {
             : [];
           const explore = exploreResponse.data.length > 0 ? exploreResponse.data[0] : null;
 
+          // Map slug to stay_page_create id
           const stayPages = [
-            { id: 1, link: "deluxe-double-bedroom" },
-            { id: 2, link: "super-deluxe-room" },
-            { id: 3, link: "standard-double-room" },
+            { id: 1, link: "deluxe-double-room-valparai" },
+            { id: 2, link: "super-deluxe-room-valparai" },
+            { id: 3, link: "standard-double-room-valparai" },
           ];
           const currentStayId = stayPages.find((page) => page.link === slug)?.id || null;
 
+          // Filter gallery data by current stay_page_create
           const gallery = Array.isArray(galleryResponse.data)
             ? galleryResponse.data.filter((item) => item.stay_page_create === currentStayId)
             : [];
@@ -112,7 +130,7 @@ const Stay = () => {
 
           console.log("Current Slug:", slug);
           console.log("Rooms Listings (after filter):", roomsListings);
-          
+
           const images = roomsListings.map((item) => ({
             id: item.id,
             image: item.image || null,
@@ -164,26 +182,28 @@ const Stay = () => {
 
   return (
     <>
+      {/* Add Helmet for SEO */}
       <Helmet>
-        <title>{seoData[slug]?.title || "Stay at Hotel Green Hills Valparai"}</title>
+        <title>{currentSeo.seoTitle || "Hotel Green Hills Valparai"}</title>
         <meta
           name="description"
-          content={seoData[slug]?.description || "Explore comfortable and scenic stays at Hotel Green Hills in Valparai."}
+          content={currentSeo.description || "Discover exceptional stays at Hotel Green Hills, Valparai."}
         />
         <meta
           name="keywords"
-          content={seoData[slug]?.keywords || "stay in Valparai, Hotel Green Hills"}
+          content={currentSeo.keyword || "Hotel Green Hills, Valparai, stay"}
         />
         <link
           rel="canonical"
-          href={seoData[slug]?.canonical || "https://www.hotelgreenhills.in/stay"}
+          href={currentSeo.canonical || "https://www.hotelgreenhills.in/stay"}
         />
       </Helmet>
+
       <Banner
         image={bannerData.image}
         title={bannerData.title}
         description={bannerData.description}
-        isButton={false} 
+        isButton={false}
       />
       <section>
         <HighlightSection highlights={highlightsData} />

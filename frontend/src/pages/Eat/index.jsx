@@ -1,9 +1,21 @@
 import { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async"; // Import Helmet
 import Banner from "../../components/Banner";
-import { fetchEatBanner, fetchEatTime, fetchEatMenuTabCreate, fetchEatMenuTabItems, fetchEatMenuTitle, fetchEatMenuListings, fetchEatAmenitiesTitle, fetchEatAmenitiesListings, fetchEatExplore, fetchEatPages } from "../../helpers/apiService";
+import {
+  fetchEatBanner,
+  fetchEatTime,
+  fetchEatMenuTabCreate,
+  fetchEatMenuTabItems,
+  fetchEatMenuTitle,
+  fetchEatMenuListings,
+  fetchEatAmenitiesTitle,
+  fetchEatAmenitiesListings,
+  fetchEatExplore,
+  fetchEatPages,
+} from "../../helpers/apiService";
 import GetInTouch from "../../components/UiComponents/GetInTouch";
+import MenuListings from "./MenuListing";
 import MenuTabItems from "./MenuTabItems";
 import AmenitiesSection from "./AmenitiesSection";
 import ExploreSection from "./ExploreSection";
@@ -21,20 +33,32 @@ const Eat = () => {
   const [exploreSectionData, setExploreSectionData] = useState(null);
   const [eatPages, setEatPages] = useState([]);
 
-  const seoData = {
-    "menu": {
-      title: "Menu – Break Fast Lunch Dinner | Hotel Green Hills Valparai",
-      description: "Explore our Menu at Hotel Green Hills, Valparai offering Breakfast, Lunch, Dinner, others and scenic dining.",
-      keywords: "Best hotel and resturant menu Valparai",
-      canonical: "https://www.hotelgreenhills.in/eat/menu",
+  // SEO data for Eat pages
+  const seoData = [
+    {
+      id: 1,
+      title: "Menu",
+      link: "menu-hotel-green-hills-valparai",
+      seoTitle: "Menu – Break Fast Lunch Dinner | Hotel Green Hills Valparai",
+      description:
+        "Explore our Menu at Hotel Green Hills, Valparai offering Breakfast, Lunch, Dinner, others and scenic dining.",
+      keyword: "Best hotel and restaurant menu Valparai",
+      canonical: "https://www.hotelgreenhills.in/eat/menu-hotel-green-hills-valparai",
     },
-    "bar": {
-      title: "Bar at Hotel Green Hills Valparai | Beverage Lounge",
-      description: "Relax at the Bar at Hotel Green Hills, Valparai enjoy refreshing beverages, scenic ambiance, and a cozy lounge.",
-      keywords: "Best hotel bar in Valparai",
-      canonical: "https://www.hotelgreenhills.in/eat/bar",
+    {
+      id: 2,
+      title: "Bar",
+      link: "bar-hotel-green-hills-valparai",
+      seoTitle: "Bar at Hotel Green Hills Valparai | Beverage Lounge",
+      description:
+        "Relax at the Bar at Hotel Green Hills, Valparai enjoy refreshing beverages, scenic ambiance, and a cozy lounge.",
+      keyword: "Best hotel bar in Valparai",
+      canonical: "https://www.hotelgreenhills.in/eat/bar-hotel-green-hills-valparai",
     },
-  };
+  ];
+
+  // Find the SEO data for the current slug
+  const currentSeo = seoData.find((page) => page.link === slug) || {};
 
   useEffect(() => {
     Promise.all([
@@ -47,34 +71,49 @@ const Eat = () => {
       fetchEatAmenitiesTitle(slug),
       fetchEatAmenitiesListings(slug),
       fetchEatExplore(slug),
-      fetchEatPages()
+      fetchEatPages(),
     ])
-      .then(([bannerRes, timeRes, tabRes, itemsRes, titleRes, listingsRes, amenitiesTitleRes, amenitiesListingsRes, exploreRes, pagesRes]) => {
-        const banner = Array.isArray(bannerRes.data) && bannerRes.data.length > 0 ? bannerRes.data[0] : null;
-        const time = Array.isArray(timeRes.data) && timeRes.data.length > 0 
-          ? timeRes.data.find(t => t.opening_time !== "<p>No Time</p>" && t.closing_time !== "<p>No Time</p>")
-          : null;
-        const tabs = Array.isArray(tabRes.data) 
-          ? tabRes.data.filter(tab => tab.tab_name !== "No Tab")
-          : [];
-        const items = Array.isArray(itemsRes.data) ? itemsRes.data : [];
-        const title = Array.isArray(titleRes.data) && titleRes.data.length > 0 ? titleRes.data[0] : null;
-        const listings = Array.isArray(listingsRes.data) ? listingsRes.data : [];
-        const amenitiesTitle = Array.isArray(amenitiesTitleRes.data) && amenitiesTitleRes.data.length > 0 ? amenitiesTitleRes.data[0] : null;
-        const amenitiesListings = Array.isArray(amenitiesListingsRes.data) ? amenitiesListingsRes.data : [];
-        const explore = Array.isArray(exploreRes.data) && exploreRes.data.length > 0 ? exploreRes.data[0] : null;
-        const pages = Array.isArray(pagesRes.data) ? pagesRes.data : [];
-        setBannerData(banner);
-        setTimeData(time);
-        setTabData(tabs);
-        setTabMenuItemsData(items);
-        setTitleData(title);
-        setMenuListingsData(listings);
-        setAmenitiesTitleData(amenitiesTitle);
-        setAmenitiesListingsData(amenitiesListings);
-        setExploreSectionData(explore);
-        setEatPages(pages);
-      })
+      .then(
+        ([
+          bannerRes,
+          timeRes,
+          tabRes,
+          itemsRes,
+          titleRes,
+          listingsRes,
+          amenitiesTitleRes,
+          amenitiesListingsRes,
+          exploreRes,
+          pagesRes,
+        ]) => {
+          const banner = Array.isArray(bannerRes.data) && bannerRes.data.length > 0 ? bannerRes.data[0] : null;
+          const time = Array.isArray(timeRes.data) && timeRes.data.length > 0
+            ? timeRes.data.find(
+                (t) => t.opening_time !== "<p>No Time</p>" && t.closing_time !== "<p>No Time</p>"
+              )
+            : null;
+          const tabs = Array.isArray(tabRes.data)
+            ? tabRes.data.filter((tab) => tab.tab_name !== "No Tab")
+            : [];
+          const items = Array.isArray(itemsRes.data) ? itemsRes.data : [];
+          const title = Array.isArray(titleRes.data) && titleRes.data.length > 0 ? titleRes.data[0] : null;
+          const listings = Array.isArray(listingsRes.data) ? listingsRes.data : [];
+          const amenitiesTitle = Array.isArray(amenitiesTitleRes.data) && amenitiesTitleRes.data.length > 0 ? amenitiesTitleRes.data[0] : null;
+          const amenitiesListings = Array.isArray(amenitiesListingsRes.data) ? amenitiesListingsRes.data : [];
+          const explore = Array.isArray(exploreRes.data) && exploreRes.data.length > 0 ? exploreRes.data[0] : null;
+          const pages = Array.isArray(pagesRes.data) ? pagesRes.data : [];
+          setBannerData(banner);
+          setTimeData(time);
+          setTabData(tabs);
+          setTabMenuItemsData(items);
+          setTitleData(title);
+          setMenuListingsData(listings);
+          setAmenitiesTitleData(amenitiesTitle);
+          setAmenitiesListingsData(amenitiesListings);
+          setExploreSectionData(explore);
+          setEatPages(pages);
+        }
+      )
       .catch((err) => {
         console.error("Failed to fetch data:", err);
         setBannerData(null);
@@ -96,25 +135,24 @@ const Eat = () => {
 
   return (
     <>
+      {/* Add Helmet for SEO */}
       <Helmet>
-        <title>{seoData[slug]?.title || "Dining at Hotel Green Hills Valparai"}</title>
+        <title>{currentSeo.seoTitle || "Dining at Hotel Green Hills Valparai"}</title>
         <meta
           name="description"
-          content={seoData[slug]?.description || "Enjoy dining experiences at Hotel Green Hills in Valparai with a variety of culinary options."}
+          content={currentSeo.description || "Explore dining options at Hotel Green Hills, Valparai."}
         />
         <meta
           name="keywords"
-          content={seoData[slug]?.keywords || "dining in Valparai, Hotel Green Hills"}
+          content={currentSeo.keyword || "Hotel Green Hills, Valparai, dining"}
         />
         <link
           rel="canonical"
-          href={seoData[slug]?.canonical || "https://www.hotelgreenhills.in/eat"}
+          href={currentSeo.canonical || "https://www.hotelgreenhills.in/eat"}
         />
       </Helmet>
-      <Banner
-        image={bannerData.image}
-        title={bannerData.title}
-      />
+
+      <Banner image={bannerData.image} title={bannerData.title} />
       {eatPages.length > 0 && (
         <div className="container-secondary mx-auto my-8 sm:my-8 lg:my-16">
           <ul className="flex flex-wrap justify-center items-center space-x-4 sm:space-x-6 md:space-y-0">
@@ -148,12 +186,8 @@ const Eat = () => {
           </div>
         )}
       */}
-      <div
-        className="container-secondary mx-auto my-8 sm:my-8 lg:my-16 w-full h-auto flex flex-col items-center justify-center"
-      >
-        <div
-          dangerouslySetInnerHTML={{ __html: bannerData.description }}
-        />
+      <div className="container-secondary mx-auto my-8 sm:my-8 lg:my-16 w-full h-auto flex flex-col items-center justify-center">
+        <div dangerouslySetInnerHTML={{ __html: bannerData.description }} />
       </div>
       {tabData.length > 0 && (
         <section className="container-secondary mx-auto my-8 sm:my-8 lg:my-16">
