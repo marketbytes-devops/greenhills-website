@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { fetchTermsConditions } from '../../helpers/apiService';
 
 const TermsConditions = () => {
@@ -26,9 +27,19 @@ const TermsConditions = () => {
 
   return (
     <div className="container-secondary mx-auto mt-32 sm:mt-32 lg:mt-40 mb-8 sm:mb-8 lg:mb-16">
+      <Helmet>
+        <title>Terms and Conditions | Hotel Green Hills Valparai</title>
+        <meta
+          name="description"
+          content="Review the terms and conditions of staying, booking, and using services at Hotel Green Hills Valparai. Includes cancellation and check-in policies."
+        />
+        <meta name="keywords" content="terms and conditions, Hotel Green Hills Valparai, booking policies, cancellation policies, check-in policies" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://www.hotelgreenhills.in/terms-and-conditions-hotel-green-hills" />
+      </Helmet>
       <h1 className="text-center text-secondaryBlack mb-8">Terms and Conditions</h1>
       {isLoading ? (
-        <div className="text-center text-gray-500">Loading...</div>
+        <div className="text-center text-gray-500"></div>
       ) : error ? (
         <div className="text-center text-red-500">{error}</div>
       ) : (

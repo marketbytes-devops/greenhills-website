@@ -26,8 +26,8 @@ const pages = [
   { link: 'blog-hotel-green-hills-valparai/:id', name: BlogDetail },
   { link: 'explore-valparai-green-hills', name: Explore },
   { link: 'gallery-hotel-green-hills-valparai', name: Gallery },
-  { link: 'terms-and-conditions', name: TermsConditions },
-  { link: 'privacy-policy', name: PrivacyPolicy },
+  { link: 'terms-and-conditions-hotel-green-hills', name: TermsConditions },
+  { link: 'privacy-policy-hotel-green-hills', name: PrivacyPolicy },
 ];
 
 const router = createBrowserRouter([

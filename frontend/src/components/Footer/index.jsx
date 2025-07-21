@@ -114,10 +114,10 @@ const Footer = () => {
           <SocialMedia />
 
           <div className="flex space-x-4">
-            <Link to="/terms-and-conditions" className="text-gray-400 text-sm hover:text-gray-200 transition-colors duration-300">
+            <Link to="terms-and-conditions-hotel-green-hills" className="text-gray-400 text-sm hover:text-gray-200 transition-colors duration-300">
               Terms & Conditions
             </Link>
-            <Link to="/privacy-policy" className="text-gray-400 text-sm hover:text-gray-200 transition-colors duration-300">
+            <Link to="/privacy-policy-hotel-green-hills" className="text-gray-400 text-sm hover:text-gray-200 transition-colors duration-300">
               Privacy Policy
             </Link>
           </div>
