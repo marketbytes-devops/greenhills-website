@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import Banner from "../../components/Banner";
 import HighlightSection from "./HighlightSection";
 import ServicesSection from "./ServicesSection";
@@ -33,6 +34,21 @@ const Gather = () => {
   const [amenitiesListingsData, setAmenitiesListingsData] = useState([]);
   const [exploreSectionData, setExploreSectionData] = useState(null);
   const [gatherPages, setGatherPages] = useState([]);
+
+  const seoData = {
+    "events": {
+      title: "Events and Family Gatherings | Hotel Green Hills Valparai",
+      description: "Celebrate your special occasion at Hotel Green Hills Valparai ideal venue for weddings, Family Gathering, retreats with scenic mountain views.",
+      keywords: "Best hotel event space in Valparai",
+      canonical: "https://www.hotelgreenhills.in/gather/events",
+    },
+    "business-gatherings": {
+      title: "Business Gatherings and Meetings | Green Hills Valparai",
+      description: "Host your business meetings and corporate events at Hotel Green Hills, Valparai, professional facilities, scenic environment and customizable catering.",
+      keywords: "Best Business event venue in Valparai",
+      canonical: "https://www.hotelgreenhills.in/gather/business-gatherings",
+    },
+  };
 
   useEffect(() => {
     Promise.all([
@@ -114,6 +130,21 @@ const Gather = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{seoData[slug]?.title || "Gatherings at Hotel Green Hills Valparai"}</title>
+        <meta
+          name="description"
+          content={seoData[slug]?.description || "Host your events and gatherings at Hotel Green Hills in Valparai with scenic venues and professional services."}
+        />
+        <meta
+          name="keywords"
+          content={seoData[slug]?.keywords || "event venue in Valparai, Hotel Green Hills"}
+        />
+        <link
+          rel="canonical"
+          href={seoData[slug]?.canonical || "https://www.hotelgreenhills.in/gather"}
+        />
+      </Helmet>
       <Banner
         image={bannerData.image}
         title={bannerData.title}

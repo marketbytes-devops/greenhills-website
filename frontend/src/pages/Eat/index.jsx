@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import Banner from "../../components/Banner";
 import { fetchEatBanner, fetchEatTime, fetchEatMenuTabCreate, fetchEatMenuTabItems, fetchEatMenuTitle, fetchEatMenuListings, fetchEatAmenitiesTitle, fetchEatAmenitiesListings, fetchEatExplore, fetchEatPages } from "../../helpers/apiService";
 import GetInTouch from "../../components/UiComponents/GetInTouch";
-import MenuListings from "./MenuListing";
 import MenuTabItems from "./MenuTabItems";
 import AmenitiesSection from "./AmenitiesSection";
 import ExploreSection from "./ExploreSection";
@@ -20,6 +20,21 @@ const Eat = () => {
   const [amenitiesListingsData, setAmenitiesListingsData] = useState([]);
   const [exploreSectionData, setExploreSectionData] = useState(null);
   const [eatPages, setEatPages] = useState([]);
+
+  const seoData = {
+    "menu": {
+      title: "Menu – Break Fast Lunch Dinner | Hotel Green Hills Valparai",
+      description: "Explore our Menu at Hotel Green Hills, Valparai offering Breakfast, Lunch, Dinner, others and scenic dining.",
+      keywords: "Best hotel and resturant menu Valparai",
+      canonical: "https://www.hotelgreenhills.in/eat/menu",
+    },
+    "bar": {
+      title: "Bar at Hotel Green Hills Valparai | Beverage Lounge",
+      description: "Relax at the Bar at Hotel Green Hills, Valparai enjoy refreshing beverages, scenic ambiance, and a cozy lounge.",
+      keywords: "Best hotel bar in Valparai",
+      canonical: "https://www.hotelgreenhills.in/eat/bar",
+    },
+  };
 
   useEffect(() => {
     Promise.all([
@@ -81,6 +96,21 @@ const Eat = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{seoData[slug]?.title || "Dining at Hotel Green Hills Valparai"}</title>
+        <meta
+          name="description"
+          content={seoData[slug]?.description || "Enjoy dining experiences at Hotel Green Hills in Valparai with a variety of culinary options."}
+        />
+        <meta
+          name="keywords"
+          content={seoData[slug]?.keywords || "dining in Valparai, Hotel Green Hills"}
+        />
+        <link
+          rel="canonical"
+          href={seoData[slug]?.canonical || "https://www.hotelgreenhills.in/eat"}
+        />
+      </Helmet>
       <Banner
         image={bannerData.image}
         title={bannerData.title}

@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -17,14 +18,14 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 
 const pages = [
   { link: '/', name: Home },
-  { link: 'about', name: About },
+  { link: 'about-hotel-green-hills-valparai', name: About },
   { link: 'stay/:slug', name: Stay },
   { link: 'eat/:slug', name: Eat },
   { link: 'gather/:slug', name: Gather },
-  { link: 'blogs', name: Blog },
+  { link: 'blog-hotel-green-hills-valparai', name: Blog },
   { link: 'blogs/:id', name: BlogDetail },
-  { link: 'explore', name: Explore },
-  { link: 'gallery', name: Gallery },
+  { link: 'explore-valparai-green-hills', name: Explore },
+  { link: 'gallery-hotel-green-hills-valparai', name: Gallery },
   { link: 'terms-and-conditions', name: TermsConditions },
   { link: 'privacy-policy', name: PrivacyPolicy },
 ];
@@ -52,9 +53,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <ModalProvider>
-      <RouterProvider router={router} />
-    </ModalProvider>
+    <HelmetProvider>
+      <ModalProvider>
+        <RouterProvider router={router} />
+      </ModalProvider>
+    </HelmetProvider>
   );
 }
 

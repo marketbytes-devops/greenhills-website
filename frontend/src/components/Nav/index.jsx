@@ -62,7 +62,7 @@ const Nav = () => {
 
   const navLinks = [
     { name: 'Home', to: '/', basePath: '/' },
-    { name: 'About Us', to: '/about', basePath: '/about' },
+    { name: 'About Us', to: '/about-hotel-green-hills-valparai', basePath: '/about-hotel-green-hills-valparai' },
     {
       name: 'Stay',
       basePath: '/stay',
@@ -87,9 +87,9 @@ const Nav = () => {
         to: `/gather/${page.link}`,
       })),
     },
-    { name: 'Blogs', to: '/blogs', basePath: '/blogs', hasChildRoutes: true },
-    { name: 'Explore', to: '/explore', basePath: '/explore' },
-    { name: 'Gallery', to: '/gallery', basePath: '/gallery' },
+    { name: 'Blogs', to: '/blog-hotel-green-hills-valparai', basePath: '/blog-hotel-green-hills-valparai', hasChildRoutes: true },
+    { name: 'Explore', to: '/explore-valparai-green-hills', basePath: '/explore-valparai-green-hills' },
+    { name: 'Gallery', to: '/gallery-hotel-green-hills-valparai', basePath: '/gallery-hotel-green-hills-valparai' },
   ];
 
   const dropdownVariants = {

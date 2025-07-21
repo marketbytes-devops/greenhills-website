@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import Banner from "../../components/Banner";
 import HighlightSection from "./HighlightSection";
 import AmenitiesSection from "./AmenitiesSection";
@@ -30,6 +31,27 @@ const Stay = () => {
   const [exploreSectionData, setExploreSectionData] = useState(null);
   const [gallerySectionData, setGallerySectionData] = useState([]);
   const [otherStaysData, setOtherStaysData] = useState(null);
+
+  const seoData = {
+    "deluxe-double-bedroom": {
+      title: "Deluxe Double Room in Valparai | Hotel Green Hills",
+      description: "Book a deluxe double room at Hotel Green Hills, Valparai ideal for couples or small families, with scenic views, cozy interiors, and modern amenities.",
+      keywords: "Best deluxe double room in Valparai",
+      canonical: "https://www.hotelgreenhills.in/stay/deluxe-double-bedroom",
+    },
+    "super-deluxe-room": {
+      title: "Super Deluxe Room in Valparai | Hotel Green Hills",
+      description: "Experience luxury in Valparai with our Deluxe Room at Hotel Green Hills spacious interiors, valley views, premium amenities, ideal for special stays.",
+      keywords: "Best super deluxe room in Valparai",
+      canonical: "https://www.hotelgreenhills.in/stay/super-deluxe-room",
+    },
+    "standard-double-room": {
+      title: "Standard Double Room in Valparai | Hotel Green Hills",
+      description: "Book a Standard Double Room at Hotel Green Hills, Valparai cozy, budget-friendly accommodations with scenic views and essential amenities.",
+      keywords: "standard double room in Valparai",
+      canonical: "https://www.hotelgreenhills.in/stay/standard-double-room",
+    },
+  };
 
   useEffect(() => {
     Promise.all([
@@ -66,7 +88,6 @@ const Stay = () => {
             : [];
           const explore = exploreResponse.data.length > 0 ? exploreResponse.data[0] : null;
 
-          // Map slug to stay_page_create id
           const stayPages = [
             { id: 1, link: "deluxe-double-bedroom" },
             { id: 2, link: "super-deluxe-room" },
@@ -74,7 +95,6 @@ const Stay = () => {
           ];
           const currentStayId = stayPages.find((page) => page.link === slug)?.id || null;
 
-          // Filter gallery data by current stay_page_create
           const gallery = Array.isArray(galleryResponse.data)
             ? galleryResponse.data.filter((item) => item.stay_page_create === currentStayId)
             : [];
@@ -119,7 +139,7 @@ const Stay = () => {
           });
           setAmenitiesListingsData(amenitiesListings);
           setExploreSectionData(explore);
-          setGallerySectionData(gallerySectionDataFiltered); // Use filtered gallery data
+          setGallerySectionData(gallerySectionDataFiltered);
           setOtherStaysData({
             images: images.length ? images : null,
             content,
@@ -144,6 +164,21 @@ const Stay = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{seoData[slug]?.title || "Stay at Hotel Green Hills Valparai"}</title>
+        <meta
+          name="description"
+          content={seoData[slug]?.description || "Explore comfortable and scenic stays at Hotel Green Hills in Valparai."}
+        />
+        <meta
+          name="keywords"
+          content={seoData[slug]?.keywords || "stay in Valparai, Hotel Green Hills"}
+        />
+        <link
+          rel="canonical"
+          href={seoData[slug]?.canonical || "https://www.hotelgreenhills.in/stay"}
+        />
+      </Helmet>
       <Banner
         image={bannerData.image}
         title={bannerData.title}
