@@ -114,6 +114,8 @@ export default function BookingForm() {
           ? data.checkout.toISOString().split("T")[0]
           : null,
         "g-recaptcha-response": token,
+        referer_url: data.referer_url,
+        submitted_url: data.submitted_url,
       };
       console.log("Submitting data:", formattedData);
       await submitBookingForm(formattedData);
