@@ -25,19 +25,27 @@ class BookingCreateView(APIView):
 
             subject = 'New Booking Request'
             message = (
-                f"New Booking Details:\n\n"
+                "Dear Hotel Green Hills Team,\n\n"
+                "A new booking request has been received with the following details:\n\n"
                 f"Name: {booking.name}\n"
                 f"Mobile: {booking.mobile}\n"
-                f"Room Type: {room_type_display}\n"  
+                f"Room Type: {room_type_display}\n"
                 f"Check-in: {booking.checkin}\n"
                 f"Check-out: {booking.checkout}\n"
                 f"Adults: {booking.adults}\n"
                 f"Referer URL: {booking.referer_url or 'Not provided'}\n"
-                f"Submitted URL: {booking.submitted_url or 'Not provided'}\n"
+                f"Submitted URL: {booking.submitted_url or 'Not provided'}\n\n"
+                "Please process this booking at your earliest convenience.\n\n"
+                "Best regards,\n"
+                "Hotel Green Hills Booking System\n\n"
+                "Contact Us:\n"
+                "Address: Statebank Road, Valparai, 642 127\n"
+                "Phone: +91 9443 409 589 | +91 9092 392 391\n"
+                "Landline: 04253 222862\n"
+                "Website: https://www.hotelgreenhills.in"
             )
             from_email = settings.EMAIL_DEFAULT_FROM
             recipient_list = [settings.EMAIL_DEFAULT_FROM]
-            cc_list = settings.EMAIL_CC
             bcc_list = settings.EMAIL_BCC
 
             try:
@@ -46,7 +54,6 @@ class BookingCreateView(APIView):
                     body=message,
                     from_email=from_email,
                     to=recipient_list,
-                    cc=cc_list,
                     bcc=bcc_list,
                 )
                 email.send(fail_silently=False)
@@ -93,11 +100,21 @@ class ContactCreateView(APIView):
             user_subject = 'Booking Confirmation'
             user_message = (
                 f"Dear {contact.name},\n\n"
-                f"Your booking has been submitted successfully!\n"
-                f"Please visit our website for more details: https://www.hotelgreenhills.in\n\n"
-                f"Thank you for choosing us!\n"
-                f"Best regards,\n"
-                f"Hotel Green Hills Team"
+                "Thank you for your booking request with Hotel Green Hills. We are pleased to inform you that your request has been successfully submitted.\n\n"
+                f"Details of your request:\n"
+                f"Name: {contact.name}\n"
+                f"Email: {contact.email}\n"
+                f"Phone: {contact.phone}\n"
+                f"Message: {contact.message}\n\n"
+                "Our team will review your request and get back to you shortly. For further assistance, please feel free to contact us:\n\n"
+                "Contact Us:\n"
+                "Address: Statebank Road, Valparai, 642 127\n"
+                "Phone: +91 9443 409 589 | +91 9092 392 391\n"
+                "Landline: 04253 222862\n"
+                "Website: https://www.hotelgreenhills.in\n\n"
+                "We look forward to welcoming you!\n\n"
+                "Best regards,\n"
+                "Hotel Green Hills Team"
             )
             try:
                 user_email = EmailMessage(
@@ -113,16 +130,24 @@ class ContactCreateView(APIView):
 
             admin_subject = 'New Contact Form Submission'
             admin_message = (
-                f"New Contact Details:\n\n"
+                "Dear Hotel Green Hills Team,\n\n"
+                "A new contact form submission has been received with the following details:\n\n"
                 f"Name: {contact.name}\n"
                 f"Email: {contact.email}\n"
                 f"Phone: {contact.phone}\n"
                 f"Message: {contact.message}\n"
                 f"Referer URL: {contact.referer_url or 'Not provided'}\n"
-                f"Submitted URL: {contact.submitted_url or 'Not provided'}\n"
+                f"Submitted URL: {contact.submitted_url or 'Not provided'}\n\n"
+                "Please address this inquiry at your earliest convenience.\n\n"
+                "Best regards,\n"
+                "Hotel Green Hills Contact System\n\n"
+                "Contact Us:\n"
+                "Address: Statebank Road, Valparai, 642 127\n"
+                "Phone: +91 9443 409 589 | +91 9092 392 391\n"
+                "Landline: 04253 222862\n"
+                "Website: https://www.hotelgreenhills.in"
             )
             recipient_list = [settings.EMAIL_DEFAULT_FROM]
-            cc_list = settings.EMAIL_CC
             bcc_list = settings.EMAIL_BCC
 
             try:
@@ -131,7 +156,6 @@ class ContactCreateView(APIView):
                     body=admin_message,
                     from_email=settings.EMAIL_DEFAULT_FROM,
                     to=recipient_list,
-                    cc=cc_list,
                     bcc=bcc_list,
                 )
                 admin_email.send(fail_silently=False)
