@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import Hero from "./Hero";
 import Services from "./Services";
 import AboutSection from "./AboutSection";
@@ -15,12 +14,6 @@ import BookingForm from "../../components/UiComponents/Forms/BookingForm";
 const Home = () => {
   return (
     <>
-      <Helmet>
-        <title>Hotel Green Hills Valparai | Best Hotel in Valparai</title>
-        <meta name="description" content="Stay at Hotel Green Hills in Valparai. Scenic hotel with comfortable rooms, local cuisine and wildlife access in the Western Ghats." />
-        <meta name="keywords" content="best hotel to stay in Valparai Kerala" />
-        <link rel="canonical" href="https://www.hotelgreenhills.in/" />
-      </Helmet>
       <div>
         <Hero />
       </div>
