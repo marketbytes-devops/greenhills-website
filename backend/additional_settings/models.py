@@ -5,6 +5,7 @@ class AdditionalSettings(models.Model):
     location = models.CharField(max_length=255, null=True, blank=True)
     phone_one = models.CharField(max_length=255, null=True, blank=True)
     phone_two = models.CharField(max_length=255, null=True, blank=True)
+    phone_three = models.CharField(max_length=255, null=True, blank=True)
     email = models.CharField(max_length=255, null=True, blank=True)
     
     def __str__(self):

@@ -27,6 +27,12 @@ const Settings = () => {
       placeholder: 'Enter the phone number 2',
     },
     {
+      name: 'phone_three',
+      label: 'Phone Number 3',
+      type: 'text',
+      placeholder: 'Enter the phone number 3',
+    },
+    {
       name: 'email',
       label: 'Email',
       type: 'text',

@@ -11,5 +11,6 @@ class AdditionalSettingsSerializer(serializers.ModelSerializer):
             "location",
             "phone_one",
             "phone_two",
+            'phone_three',
             "email",
         ]
